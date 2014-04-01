@@ -1,0 +1,3 @@
+.<%= params.slugifiedContentName %> { display: inline-block; width: auto; }
+.<%= params.slugifiedContentName %> img { display: block; }
+.<%= params.slugifiedContentName %> .caption { text-align: center; }

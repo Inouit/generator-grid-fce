@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?><T3DataStructure>
+    <sheets>
+      <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:<%= currentDir %>/Resources/Private/Language/<%= params.slugifiedContentName %>.xlf:flexform.sheets.general</sheetTitle>
+            </TCEforms>
+        <type>array</type>
+        <el>
+          <file>
+            <TCEforms>
+              <label>LLL:EXT:<%= currentDir %>/Resources/Private/Language/<%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.image</label>
+              <config>
+                <type>group</type>
+                <internal_type>file</internal_type>
+                <allowed>gif,jpg,jpeg,tif,bmp,pcx,tga,png,pdf,ai</allowed>
+                <max_size>5000</max_size>
+                <uploadfolder>uploads/<%= currentDir %>/<%= params.slugifiedContentName %>/</uploadfolder>
+                <show_thumbs>1</show_thumbs>
+                <maxitems>1</maxitems>
+              </config>
+            </TCEforms>
+          </file>
+          <caption>
+            <TCEforms>
+              <label>LLL:EXT:<%= currentDir %>/Resources/Private/Language/<%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.caption</label>
+              <config>
+                <type>input</type>
+              </config>
+            </TCEforms>
+          </caption>
+        </el>
+      </ROOT>
+      </sDEF>
+    </sheets>
+</T3DataStructure>

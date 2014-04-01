@@ -1,14 +1,14 @@
 {
   "name": "generator-gridelements",
   "version": "0.0.0",
-  "description": "Yeoman generator",
+  "description": "Yeoman generator for typo3 extension 'gridelements'",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "Gregcop1/generator-gridelements",
+  "repository": "Inouit/generator-gridelements",
   "author": {
     "name": "Grégory Copin",
     "email": "gregcop1@gmail.com",
-    "url": "https://github.com/Gregcop1"
+    "url": "https://github.com/Inouit"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -24,7 +24,9 @@
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
-    "chalk": "~0.4.0"
+    "chalk": "~0.4.0",
+    "underscore": "~1.6.0",
+    "underscore.string": "~2.3.3"
   },
   "devDependencies": {
     "mocha": "*"
