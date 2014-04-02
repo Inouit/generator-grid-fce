@@ -17,7 +17,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
       tsDir: 'Configuration/Typoscript/',
       llDir: 'Resources/Private/Language/',
       cssDir: 'Resources/Public/css/',
-      iconsDir: 'Resources/Public/icons/'
+      iconsDir: 'Resources/Public/Icons/'
     }
 
     // Check defaults files

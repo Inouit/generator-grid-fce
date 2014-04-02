@@ -3,13 +3,13 @@
       <sDEF>
       <ROOT>
         <TCEforms>
-          <sheetTitle>LLL:EXT:<%= currentDir %>/Resources/Private/Language/<%= params.slugifiedContentName %>.xlf:flexform.sheets.general</sheetTitle>
+          <sheetTitle>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %>/<%= params.slugifiedContentName %>.xlf:flexform.sheets.general</sheetTitle>
             </TCEforms>
         <type>array</type>
         <el>
           <file>
             <TCEforms>
-              <label>LLL:EXT:<%= currentDir %>/Resources/Private/Language/<%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.image</label>
+              <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %>/<%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.image</label>
               <config>
                 <type>group</type>
                 <internal_type>file</internal_type>
@@ -23,7 +23,7 @@
           </file>
           <caption>
             <TCEforms>
-              <label>LLL:EXT:<%= currentDir %>/Resources/Private/Language/<%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.caption</label>
+              <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %>/<%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.caption</label>
               <config>
                 <type>input</type>
               </config>
