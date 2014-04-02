@@ -4,16 +4,16 @@
     <header/>
     <body>
       <trans-unit id="TSconfig.<%= params.slugifiedContentName %>.title" xml:space="preserve">
-        <source>Image légendée</source>
+        <source><%= params.contentName %></source>
       </trans-unit>
       <trans-unit id="TSconfig.<%= params.slugifiedContentName %>.description" xml:space="preserve">
-        <source>Image avec légende</source>
+        <source><%= params.contentDescription %></source>
       </trans-unit>
       <trans-unit id="flexform.<%= params.slugifiedContentName %>.image" xml:space="preserve">
         <source>Image</source>
       </trans-unit>
       <trans-unit id="flexform.<%= params.slugifiedContentName %>.caption" xml:space="preserve">
-        <source>Légende</source>
+        <source>Caption</source>
       </trans-unit>
     </body>
   </file>
