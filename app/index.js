@@ -22,12 +22,6 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
 
     // Check defaults files
     this._checkDefaultFiles();
-
-    this.on('end', function () {
-      if (!this.options['skip-install']) {
-        this.installDependencies();
-      }
-    });
   },
 
   askFor: function () {
@@ -113,6 +107,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this.template(this.dirs.tsConfigDir+'_imageCaption.ts', this.dirs.tsConfigDir+this.params.slug+'.ts');
     this.template(this.dirs.tsDir+'_imageCaption.ts', this.dirs.tsDir+this.params.slug+'.ts');
     this.template(this.dirs.llDir+'_imageCaption.xlf', this.dirs.llDir+this.params.slug+'.xlf');
+    this.template(this.dirs.llDir+'_fr.imageCaption.xlf', this.dirs.llDir+'fr.'+this.params.slug+'.xlf');
     this.template(this.dirs.cssDir+'_imageCaption.css', this.dirs.cssDir+this.params.slug+'.css');
     this.copy(this.dirs.iconsDir+'_imageCaption.gif', this.dirs.iconsDir+this.params.slug+'.gif');
 

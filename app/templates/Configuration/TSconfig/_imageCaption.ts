@@ -1,7 +1,7 @@
 tx_gridelements.setup.<%= params.slugifiedContentName %> {
 
-  title = LLL:EXT:<%= currentDir %>/<%= dirs.llDir %>locallang_db.xlf:TSconfig.<%= params.slugifiedContentName %>.title
-  description = LLL:EXT:<%= currentDir %>/<%= dirs.llDir %>locallang_db.xlf:TSconfig.<%= params.slugifiedContentName %>.description
+  title = LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:TSconfig.<%= params.slugifiedContentName %>.title
+  description = LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:TSconfig.<%= params.slugifiedContentName %>.description
   flexformDS = FILE:EXT:<%= currentDir %>/<%= dirs.flexFormDir %><%= params.slugifiedContentName %>.xml
   icon = EXT:<%= currentDir %>/<%= dirs.iconsDir %><%= params.slugifiedContentName %>.gif
 
