@@ -12,11 +12,14 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
 
     this.dirs = {
+      hooksDir: 'Classes/Hooks/',
       flexFormDir: 'Configuration/FlexForm/',
       tsConfigDir: 'Configuration/TSconfig/',
       tsDir: 'Configuration/Typoscript/',
       llDir: 'Resources/Private/Language/',
+      jsDir: 'Resources/Public/js/',
       cssDir: 'Resources/Public/css/',
+      imgDir: 'Resources/Public/img/',
       iconsDir: 'Resources/Public/Icons/'
     }
 
@@ -45,6 +48,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
         new yeoman.inquirer.Separator(),
         { value:'clickToPlay', name:'Based on Click to Play Youtube video' },
         { value:'imageCaption', name:'Based on Image Caption' },
+        { value:'slideshow', name:'Based on Slideshow' },
         { value:'full', name:'Full content element' },
         { value:'empty', name:'Empty content element' },
         new yeoman.inquirer.Separator(),
@@ -73,6 +77,9 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
       case 'imageCaption':
         this._copyImageCaption();
         break;
+      case 'slideshow':
+        this._copySlideshowCaption();
+        break;
       case 'full':
         // this._copyFull();
         break;
@@ -96,6 +103,15 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     if(!fs.existsSync('ext_emconf.php')) {
       this.template('_ext_emconf.php', 'ext_emconf.php');
     }
+    if(!fs.existsSync(this.dirs.hooksDir+'CObj.php')) {
+      this.copy(this.dirs.hooksDir+'CObj.php', this.dirs.hooksDir+'CObj.php');
+    }
+    if(!fs.existsSync(this.dirs.hooksDir+'DrawItem.php')) {
+      this.copy(this.dirs.hooksDir+'DrawItem.php', this.dirs.hooksDir+'DrawItem.php');
+    }
+    if(!fs.existsSync(this.dirs.hooksDir+'GetData.php')) {
+      this.copy(this.dirs.hooksDir+'GetData.php', this.dirs.hooksDir+'GetData.php');
+    }
   },
 
   _copyImageCaption: function() {
@@ -110,6 +126,30 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this.template(this.dirs.llDir+'_fr.imageCaption.xlf', this.dirs.llDir+'fr.'+this.params.slug+'.xlf');
     this.template(this.dirs.cssDir+'_imageCaption.css', this.dirs.cssDir+this.params.slug+'.css');
     this.copy(this.dirs.iconsDir+'_imageCaption.gif', this.dirs.iconsDir+this.params.slug+'.gif');
+
+    // Fill extension files
+    this._fillConfFiles();
+  },
+
+  _copySlideshowCaption: function() {
+    // upload directory
+    this.createDir = true;
+
+    // Copy files
+    this.template(this.dirs.flexFormDir+'_slideshow.xml', this.dirs.flexFormDir+this.params.slug+'.xml');
+    this.template(this.dirs.tsConfigDir+'_slideshow.ts', this.dirs.tsConfigDir+this.params.slug+'.ts');
+    this.template(this.dirs.tsDir+'_slideshow.ts', this.dirs.tsDir+this.params.slug+'.ts');
+    this.template(this.dirs.llDir+'_slideshow.xlf', this.dirs.llDir+this.params.slug+'.xlf');
+    this.template(this.dirs.llDir+'_fr.slideshow.xlf', this.dirs.llDir+'fr.'+this.params.slug+'.xlf');
+    this.template(this.dirs.cssDir+'_slideshow.css', this.dirs.cssDir+this.params.slug+'.css');
+    this.copy(this.dirs.cssDir+'fonts/slick.eot', this.dirs.cssDir+'fonts/slick.eot');
+    this.copy(this.dirs.cssDir+'fonts/slick.svg', this.dirs.cssDir+'fonts/slick.svg');
+    this.copy(this.dirs.cssDir+'fonts/slick.ttf', this.dirs.cssDir+'fonts/slick.ttf');
+    this.copy(this.dirs.cssDir+'fonts/slick.woff', this.dirs.cssDir+'fonts/slick.woff');
+    this.copy(this.dirs.iconsDir+'_slideshow.gif', this.dirs.iconsDir+this.params.slug+'.gif');
+    this.copy(this.dirs.imgDir+'ajax-loader.gif', this.dirs.imgDir+'ajax-loader.gif');
+    this.template(this.dirs.jsDir+'_slideshow.js', this.dirs.jsDir+this.params.slug+'.js');
+    this.copy(this.dirs.jsDir+'slick.min.js', this.dirs.jsDir+'slick.min.js');
 
     // Fill extension files
     this._fillConfFiles();

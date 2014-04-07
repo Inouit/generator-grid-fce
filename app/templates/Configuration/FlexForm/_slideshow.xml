@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?><T3DataStructure>
+    <sheets>
+      <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %>locallang_db.xlf:flexform.sheets.general</sheetTitle>
+            </TCEforms>
+        <type>array</type>
+        <el>
+          <images>
+            <section>1</section>
+            <type>array</type>
+            <el>
+              <image>
+                <type>array</type>
+                <tx_templavoila>
+                  <title>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.image</title>
+                </tx_templavoila>
+                <el>
+                  <file>
+                    <TCEforms>
+                      <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.image</label>
+                      <config>
+                        <type>group</type>
+                        <internal_type>file</internal_type>
+                        <allowed>gif,jpg,jpeg,tif,bmp,pcx,tga,png,pdf,ai</allowed>
+                        <max_size>5000</max_size>
+                        <uploadfolder>uploads/<%= currentDir %>/<%= params.slugifiedContentName %>/</uploadfolder>
+                        <show_thumbs>1</show_thumbs>
+                        <maxitems>1</maxitems>
+                      </config>
+                    </TCEforms>
+                  </file>
+                  <caption>
+                    <TCEforms>
+                      <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.caption</label>
+                      <config>
+                        <type>input</type>
+                      </config>
+                    </TCEforms>
+                  </caption>
+                  <link>
+                    <TCEforms>
+                      <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.link</label>
+                      <config>
+                        <type>input</type>
+                        <size>15</size>
+                        <wizards type="array">
+                          <_PADDING type="integer">2</_PADDING>
+                          <link type="array">
+                            <type>popup</type>
+                            <title>Link</title>
+                            <icon>link_popup.gif</icon>
+                            <script>browse_links.php?mode=wizard</script>
+                            <JSopenParams>height=300,width=500,status=0,menubar=0,scrollbars=1</JSopenParams>
+                          </link>
+                        </wizards>
+                      </config>
+                    </TCEforms>
+                  </link>
+
+                </el>
+              </image>
+            </el>
+          </images>
+        </el>
+      </ROOT>
+      </sDEF>
+    </sheets>
+</T3DataStructure>

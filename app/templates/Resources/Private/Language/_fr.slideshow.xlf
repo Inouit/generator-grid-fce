@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2012-06-13T20:22:32Z" product-name="<%= params.slugifiedContentName %>">
+    <header/>
+    <body>
+      <trans-unit id="TSconfig.<%= params.slugifiedContentName %>.title" xml:space="preserve" approved="yes">
+        <source><%= params.contentName %></source>
+        <target state="translated"><%= params.contentName %></target>
+      </trans-unit>
+      <trans-unit id="TSconfig.<%= params.slugifiedContentName %>.description" xml:space="preserve" approved="yes">
+        <source><%= params.contentDescription %></source>
+        <target state="translated"><%= params.contentDescription %></target>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.image" xml:space="preserve" approved="yes">
+        <source>Image</source>
+        <target state="translated">Image</target>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.caption" xml:space="preserve" approved="yes">
+        <source>Caption</source>
+        <target state="translated">Caption</target>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.link" xml:space="preserve" approved="yes">
+        <source>Link</source>
+        <target state="translated">Lien</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
