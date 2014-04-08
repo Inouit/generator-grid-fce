@@ -34,5 +34,4 @@ tt_content.gridelements_pi1.20.10.setup.<%= params.slugifiedContentName %> {
   }
 
   outerWrap = <div class="<%= params.slugifiedContentName %> slick-slider">|</div>
-  outerWrap.insertData = 1
 }

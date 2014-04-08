@@ -8,6 +8,24 @@
         </TCEforms>
         <type>array</type>
         <el>
+          <title>
+            <TCEforms>
+              <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.title</label>
+              <config>
+                <type>input</type>
+              </config>
+            </TCEforms>
+          </title>
+          <desc>
+            <TCEforms>
+              <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.description</label>
+              <config>
+                <type>text</type>
+                <cols>50</cols>
+                <rows>5</rows>
+              </config>
+            </TCEforms>
+          </desc>
           <file>
             <TCEforms>
               <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.image</label>
@@ -17,21 +35,24 @@
                 <allowed>gif,jpg,jpeg,tif,bmp,pcx,tga,png,pdf,ai</allowed>
                 <max_size>5000</max_size>
                 <uploadfolder>uploads/<%= currentDir %>/<%= params.slugifiedContentName %>/</uploadfolder>
-                <show_thumbs>1</show_thumbs>
                 <maxitems>1</maxitems>
+                <size>1</size>
+                <selectedListStyle>width:200px</selectedListStyle>
+                <show_thumbs>1</show_thumbs>
               </config>
             </TCEforms>
           </file>
-          <caption>
+          <video>
             <TCEforms>
-              <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.caption</label>
+              <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.video</label>
               <config>
                 <type>input</type>
               </config>
             </TCEforms>
-          </caption>
+          </video>
         </el>
       </ROOT>
       </sDEF>
     </sheets>
 </T3DataStructure>
+

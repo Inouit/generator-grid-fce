@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?><T3DataStructure>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
     <sheets>
       <sDEF>
       <ROOT>
         <TCEforms>
           <sheetTitle>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %>locallang_db.xlf:flexform.sheets.general</sheetTitle>
-            </TCEforms>
+        </TCEforms>
         <type>array</type>
         <el>
           <images>

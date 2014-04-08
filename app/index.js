@@ -71,7 +71,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this.params.slug =  this.params.slugifiedContentName;
     switch(this.params.action) {
       case 'clickToPlay':
-        // this._copyClickToPlay();
+        this._copyClickToPlay();
         break;
       case 'imageCaption':
         this._copyImageCaption();
@@ -102,6 +102,24 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     if(!fs.existsSync('ext_emconf.php')) {
       this.template('_ext_emconf.php', 'ext_emconf.php');
     }
+  },
+
+  _copyClickToPlay: function() {
+    // upload directory
+    this.createDir = true;
+
+    // Copy files
+    this.template(this.dirs.flexFormDir+'_clickToPlay.xml', this.dirs.flexFormDir+this.params.slug+'.xml');
+    this.template(this.dirs.tsConfigDir+'_clickToPlay.ts', this.dirs.tsConfigDir+this.params.slug+'.ts');
+    this.template(this.dirs.tsDir+'_clickToPlay.ts', this.dirs.tsDir+this.params.slug+'.ts');
+    this.template(this.dirs.llDir+'_clickToPlay.xlf', this.dirs.llDir+this.params.slug+'.xlf');
+    this.template(this.dirs.llDir+'_fr.clickToPlay.xlf', this.dirs.llDir+'fr.'+this.params.slug+'.xlf');
+    this.template(this.dirs.cssDir+'_clickToPlay.css', this.dirs.cssDir+this.params.slug+'.css');
+    this.copy(this.dirs.iconsDir+'_clickToPlay.gif', this.dirs.iconsDir+this.params.slug+'.gif');
+    this.template(this.dirs.jsDir+'_clickToPlay.js', this.dirs.jsDir+this.params.slug+'.js');
+
+    // Fill extension files
+    this._fillConfFiles();
   },
 
   _copyImageCaption: function() {

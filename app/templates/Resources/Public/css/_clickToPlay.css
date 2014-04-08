@@ -1,0 +1,5 @@
+.<%= params.slugifiedContentName %> { display: inline-block; position: relative; }
+.<%= params.slugifiedContentName %> .infos { position: absolute; top: 80px; left: 0; right: 0; }
+.<%= params.slugifiedContentName %> h3 { margin : 10px 30px 10px 30px; }
+.<%= params.slugifiedContentName %> p { margin: 10px 30px 20px 30px; }
+.<%= params.slugifiedContentName %> .player { position: absolute; display: none; left: 0; top: 0; }
