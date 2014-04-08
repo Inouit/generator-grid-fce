@@ -1,5 +1,5 @@
 {
-  "name": "generator-gridelements",
+  "name": "generator-grid-fce",
   "version": "0.0.0",
   "description": "Yeoman generator for typo3 extension 'gridelements'",
   "license": "MIT",

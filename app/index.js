@@ -33,7 +33,6 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     {
       name: 'contentName',
       message: "What's the name of your content element?",
-      default: 'Image Caption'
     },
     {
       name: 'contentDescription',
@@ -44,13 +43,13 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
       name: 'action',
       message: 'Content element type:',
       choices: [
-        { value:'custom', name:'Create a custom content element' },
-        new yeoman.inquirer.Separator(),
+        // { value:'custom', name:'Create a custom content element' },
+        // new yeoman.inquirer.Separator(),
         { value:'clickToPlay', name:'Based on Click to Play Youtube video' },
         { value:'imageCaption', name:'Based on Image Caption' },
         { value:'slideshow', name:'Based on Slideshow' },
-        { value:'full', name:'Full content element' },
-        { value:'empty', name:'Empty content element' },
+        // { value:'full', name:'Full content element' },
+        // { value:'empty', name:'Empty content element' },
         new yeoman.inquirer.Separator(),
         { value:'exit', name:'Exit' },
       ]
