@@ -1,47 +1,54 @@
 # generator-grid-fce
 
-> [Yeoman](http://yeoman.io) generator
-
-
 ## Getting Started
 
-### What is Yeoman?
+### What is generator-grid-fce?
 
+It's a [Yeoman][1] generator for create flexible content elements with gridelements in [Typo3][2] version 6.2 or higher
 Trick question. It's not a thing. It's this guy:
 
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
+## Requirements
+### [Yeoman][3] ###
 Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
 
 ```
 $ npm install -g yo
-```
-
-### Yeoman Generators
-
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-grid-fce from npm, run:
-
-```
 $ npm install -g generator-grid-fce
 ```
 
-Finally, initiate the generator:
+### [gridelements_fce][4] ###
+In frontend typoscript configuration, the generator use this extension for building loop on flexform section
+
+### plugin configuration ###
+It's a best practice to store your flex in a plugin or at least in your skin plugin. We just have some requirement for this plugin but if those files don't exist yet, the generator will create them for you.
+**What do we need ?**
+ - in **ext_emconf.php**, a `'createDirs' => ''` should be set. It'll be filled when one of your FCE need a upload directory
+ - in **ext_localconf.php**, a `// ## insert here` comment for TSConfig insertion
+ - in **ext_typoscript_setup.txt**, a `// ## insert here` comment for Typoscript insertion
+
+
+## Launch generator
+Initiate the generator in the typo3 extension where you want to store  flexible content elements:
 
 ```
 $ yo grid-fce
 ```
 
-### Getting To Know Yeoman
+Follow instructions and build your own content element
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+**Choose the type of custom element**
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
-
+     [?] Content element type: (Use arrow keys)
+        ‣ Based on Click to Play Youtube video        // -> Copy a "Click To play youtube" element
+        Based on Image Caption                        // -> Copy a "Image Caption" element
+        Based on Slideshow                            // -> Copy a "Slideshow" element
+        --------
+        Exit                                          // -> I let you guess
 
 ## License
+GPL V3
 
-MIT
+  [1]: http://yeoman.io
+  [2]: http://typo3.org/
+  [3]: http://yeoman.io
+  [4]: http://typo3.org/extensions/repository/view/gridelements
