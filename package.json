@@ -1,10 +1,10 @@
 {
   "name": "generator-grid-fce",
   "version": "0.0.5",
-  "description": "Yeoman generator for typo3 extension 'gridelements'",
-  "license": "MIT",
+  "description": "generator to create flexible content elements with gridelements in Typo3 version 6.2 or higher",
+  "license": "GPL v3",
   "main": "app/index.js",
-  "repository": "Inouit/generator-gridelements",
+  "repository": "https://github.com/Inouit/generator-grid-fce",
   "author": {
     "name": "Grégory Copin",
     "email": "gregcop1@gmail.com",

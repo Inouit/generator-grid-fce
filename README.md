@@ -4,8 +4,7 @@
 
 ### What is generator-grid-fce?
 
-It's a [Yeoman][1] generator for create flexible content elements with gridelements in [Typo3][2] version 6.2 or higher
-Trick question. It's not a thing. It's this guy:
+It's a [Yeoman][1] generator to create flexible content elements with gridelements in [Typo3][2] version 6.2 or higher
 
 ## Requirements
 ### [Yeoman][3] ###
