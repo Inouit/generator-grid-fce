@@ -9,7 +9,7 @@ tt_content.gridelements_pi1.20.10.setup.<%= params.slugifiedContentName %> {
     10 = IMAGE
     10{
       file.import.field = flexform_file
-      file.import.wrap = uploads/skinFlex/<%= params.slugifiedContentName %>/
+      file.import.wrap = uploads/<%= currentDir %>/<%= params.slugifiedContentName %>/
       #file.maxW = 565m
       #file.maxH = 330m
     }
@@ -33,7 +33,7 @@ tt_content.gridelements_pi1.20.10.setup.<%= params.slugifiedContentName %> {
 
       30 = TEXT
       30{
-        data = LLL:EXT:skinFlex/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.btnLabel
+        data = LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.btnLabel
         stdWrap.typolink{
           parameter = javascript:;
           ATagParams = class="play"

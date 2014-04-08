@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2012-06-13T20:22:32Z" product-name="<%= params.slugifiedContentName %>">
+    <header/>
+    <body>
+      <trans-unit id="TSconfig.<%= params.slugifiedContentName %>.title" xml:space="preserve" approved="yes">
+        <source><%= params.contentName %></source>
+        <target state="translated"><%= params.contentName %></target>
+      </trans-unit>
+      <trans-unit id="TSconfig.<%= params.slugifiedContentName %>.description" xml:space="preserve" approved="yes">
+        <source><%= params.contentDescription %></source>
+        <target state="translated"><%= params.contentDescription %></target>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.image" xml:space="preserve" approved="yes">
+        <source>Image</source>
+        <target state="translated">Image</target>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.title" xml:space="preserve" approved="yes">
+        <source>Title</source>
+        <target state="translated">Titre</target>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.description" xml:space="preserve" approved="yes">
+        <source>Description</source>
+        <target state="translated">Description</target>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.loopItem" xml:space="preserve" approved="yes">
+        <source>Loop Item</source>
+        <target state="translated">Élément</target>
+      </trans-unit>
+
+
+
+
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.image" xml:space="preserve">
+        <source>Image</source>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.title" xml:space="preserve">
+        <source>Title</source>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.description" xml:space="preserve">
+        <source>Description</source>
+      </trans-unit>
+      <trans-unit id="flexform.<%= params.slugifiedContentName %>.loopItem" xml:space="preserve">
+        <source>Loop Item</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

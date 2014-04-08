@@ -48,7 +48,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
         { value:'clickToPlay', name:'Based on Click to Play Youtube video' },
         { value:'imageCaption', name:'Based on Image Caption' },
         { value:'slideshow', name:'Based on Slideshow' },
-        // { value:'full', name:'Full content element' },
+        { value:'full', name:'Full content element' },
         // { value:'empty', name:'Empty content element' },
         new yeoman.inquirer.Separator(),
         { value:'exit', name:'Exit' },
@@ -80,7 +80,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
         this._copySlideshowCaption();
         break;
       case 'full':
-        // this._copyFull();
+        this._copyFull();
         break;
       case 'empty':
         // this._copyEmpty();
@@ -140,6 +140,24 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
   },
 
   _copySlideshowCaption: function() {
+    // upload directory
+    this.createDir = true;
+
+    // Copy files
+    this.template(this.dirs.flexFormDir+'_full.xml', this.dirs.flexFormDir+this.params.slug+'.xml');
+    this.template(this.dirs.tsConfigDir+'_full.ts', this.dirs.tsConfigDir+this.params.slug+'.ts');
+    this.template(this.dirs.tsDir+'_full.ts', this.dirs.tsDir+this.params.slug+'.ts');
+    this.template(this.dirs.llDir+'_full.xlf', this.dirs.llDir+this.params.slug+'.xlf');
+    this.template(this.dirs.llDir+'_fr.full.xlf', this.dirs.llDir+'fr.'+this.params.slug+'.xlf');
+    this.template(this.dirs.cssDir+'_full.css', this.dirs.cssDir+this.params.slug+'.css');
+    this.copy(this.dirs.iconsDir+'_empty.gif', this.dirs.iconsDir+this.params.slug+'.gif');
+    this.template(this.dirs.jsDir+'_full.js', this.dirs.jsDir+this.params.slug+'.js');
+
+    // Fill extension files
+    this._fillConfFiles();
+  },
+
+  _copyFull: function() {
     // upload directory
     this.createDir = true;
 

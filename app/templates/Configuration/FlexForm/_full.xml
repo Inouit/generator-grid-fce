@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <sheets>
+      <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %>locallang_db.xlf:flexform.sheets.general</sheetTitle>
+            </TCEforms>
+        <type>array</type>
+        <el>
+          <title>
+            <TCEforms>
+              <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.title</label>
+              <config>
+                <type>input</type>
+              </config>
+            </TCEforms>
+          </title>
+          <desc>
+            <TCEforms>
+              <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.description</label>
+              <config>
+                <type>text</type>
+                <cols>50</cols>
+                <rows>5</rows>
+              </config>
+              <defaultExtras>richtext[*]:rte_transform[mode=ts_css]</defaultExtras>
+            </TCEforms>
+          </desc>
+          <file>
+            <TCEforms>
+              <label>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.image</label>
+              <config>
+                <type>group</type>
+                <internal_type>file</internal_type>
+                <allowed>gif,jpg,jpeg,tif,bmp,pcx,tga,png,pdf,ai</allowed>
+                <max_size>5000</max_size>
+                <uploadfolder>uploads/<%= currentDir %>/<%= params.slugifiedContentName %>/</uploadfolder>
+                <maxitems>1</maxitems>
+                <size>1</size>
+                <selectedListStyle>width:200px</selectedListStyle>
+                <show_thumbs>1</show_thumbs>
+              </config>
+            </TCEforms>
+          </file>
+          <loopItems>
+            <section>1</section>
+            <type>array</type>
+            <el>
+              <loopItem>
+                <type>array</type>
+                <tx_templavoila>
+                  <title>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.<%= params.slugifiedContentName %>.loopItem</title>
+                </tx_templavoila>
+                <el>
+                </el>
+              </loopItem>
+            </el>
+          </loopItems>
+        </el>
+      </ROOT>
+      </sDEF>
+    </sheets>
+</T3DataStructure>
