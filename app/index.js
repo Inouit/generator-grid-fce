@@ -103,15 +103,6 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     if(!fs.existsSync('ext_emconf.php')) {
       this.template('_ext_emconf.php', 'ext_emconf.php');
     }
-    if(!fs.existsSync(this.dirs.hooksDir+'CObj.php')) {
-      this.copy(this.dirs.hooksDir+'CObj.php', this.dirs.hooksDir+'CObj.php');
-    }
-    if(!fs.existsSync(this.dirs.hooksDir+'DrawItem.php')) {
-      this.copy(this.dirs.hooksDir+'DrawItem.php', this.dirs.hooksDir+'DrawItem.php');
-    }
-    if(!fs.existsSync(this.dirs.hooksDir+'GetData.php')) {
-      this.copy(this.dirs.hooksDir+'GetData.php', this.dirs.hooksDir+'GetData.php');
-    }
   },
 
   _copyImageCaption: function() {

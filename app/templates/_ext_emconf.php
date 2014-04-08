@@ -30,6 +30,7 @@ $EM_CONF[$_EXTKEY] = array (
         'extbase' => '',
         'fluid' => '',
         'gridelements' => '2.0.2',
+        'gridelements_fce' => '',
       ),
     'conflicts' =>
       array (
