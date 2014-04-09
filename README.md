@@ -47,7 +47,7 @@ Follow instructions and build your own content element
 ```
 
 ##FCE screenshots##
-                              |
+|                             |                              |
 :---------------------------: | :--------------------------:
 **Click to play**<br />![][5] | **Image caption**<br >![][6]
 **Slideshow**<br />![][7]     |
