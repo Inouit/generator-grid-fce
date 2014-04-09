@@ -46,6 +46,11 @@ Follow instructions and build your own content element
   Exit                                  // -> I let you guess
 ```
 
+##FCE screenshots##
+| :-------------: |:-------------:|
+| ![slideshow][5] |               |
+| Slideshow       |               |
+
 ## License ##
 GPL V3
 
@@ -53,3 +58,4 @@ GPL V3
   [2]: http://typo3.org/
   [3]: http://yeoman.io
   [4]: http://typo3.org/extensions/repository/view/gridelements
+  [5]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/slideshow.jpg
