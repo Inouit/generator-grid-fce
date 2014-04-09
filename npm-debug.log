@@ -1,0 +1,199 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.3.8
+3 info using node@v0.10.16
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /home/gcopin/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz',
+10 verbose tar pack   '.' ]
+11 verbose tarball /home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz
+12 verbose folder .
+13 silly lockFile 1f1177db-tar tar://.
+14 verbose lock tar://. /home/gcopin/.npm/1f1177db-tar.lock
+15 silly lockFile 6235e8a3-5544-0-34349547047168016-tmp-tgz tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz
+16 verbose lock tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz /home/gcopin/.npm/6235e8a3-5544-0-34349547047168016-tmp-tgz.lock
+17 silly lockFile 1f1177db-tar tar://.
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 6235e8a3-5544-0-34349547047168016-tmp-tgz tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz
+20 silly lockFile 6235e8a3-5544-0-34349547047168016-tmp-tgz tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz
+21 verbose tar unpack /home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz
+22 silly lockFile d73c183a-5544-0-34349547047168016-package tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package
+23 verbose lock tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package /home/gcopin/.npm/d73c183a-5544-0-34349547047168016-package.lock
+24 silly lockFile 6235e8a3-5544-0-34349547047168016-tmp-tgz tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz
+25 verbose lock tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz /home/gcopin/.npm/6235e8a3-5544-0-34349547047168016-tmp-tgz.lock
+26 silly gunzTarPerm modes [ '755', '644' ]
+27 silly gunzTarPerm extractEntry package.json
+28 silly gunzTarPerm extractEntry README.md
+29 silly gunzTarPerm extractEntry app/index.js
+30 silly gunzTarPerm extractEntry app/templates/Configuration/FlexForm/_clickToPlay.xml
+31 silly gunzTarPerm extractEntry app/templates/Configuration/FlexForm/_imageCaption.xml
+32 silly gunzTarPerm extractEntry app/templates/Configuration/FlexForm/_slideshow.xml
+33 silly gunzTarPerm extractEntry app/templates/Configuration/TSconfig/_clickToPlay.ts
+34 silly gunzTarPerm extractEntry app/templates/Configuration/TSconfig/_imageCaption.ts
+35 silly gunzTarPerm extractEntry app/templates/Configuration/TSconfig/_slideshow.ts
+36 silly gunzTarPerm extractEntry app/templates/Configuration/Typoscript/_clickToPlay.ts
+37 silly gunzTarPerm extractEntry app/templates/Configuration/Typoscript/_imageCaption.ts
+38 silly gunzTarPerm extractEntry app/templates/Configuration/Typoscript/_slideshow.ts
+39 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_clickToPlay.xlf
+40 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_fr.clickToPlay.xlf
+41 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_fr.imageCaption.xlf
+42 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_fr.slideshow.xlf
+43 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_imageCaption.xlf
+44 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_slideshow.xlf
+45 silly gunzTarPerm extractEntry app/templates/Resources/Public/Icons/_clickToPlay.gif
+46 silly gunzTarPerm extractEntry app/templates/Resources/Public/Icons/_imageCaption.gif
+47 silly gunzTarPerm extractEntry app/templates/Resources/Public/Icons/_slideshow.gif
+48 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/_clickToPlay.css
+49 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/_imageCaption.css
+50 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/_slideshow.css
+51 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/fonts/slick.eot
+52 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/fonts/slick.svg
+53 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/fonts/slick.ttf
+54 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/fonts/slick.woff
+55 silly gunzTarPerm extractEntry app/templates/Resources/Public/img/ajax-loader.gif
+56 silly gunzTarPerm extractEntry app/templates/Resources/Public/js/_clickToPlay.js
+57 silly gunzTarPerm extractEntry app/templates/Resources/Public/js/_slideshow.js
+58 silly gunzTarPerm extractEntry app/templates/Resources/Public/js/slick.min.js
+59 silly gunzTarPerm extractEntry app/templates/_ext_emconf.php
+60 silly gunzTarPerm extractEntry app/templates/_ext_localconf.php
+61 silly gunzTarPerm extractEntry app/templates/_ext_typoscript_setup.txt
+62 silly lockFile d73c183a-5544-0-34349547047168016-package tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package
+63 silly lockFile d73c183a-5544-0-34349547047168016-package tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package
+64 silly lockFile 6235e8a3-5544-0-34349547047168016-tmp-tgz tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz
+65 silly lockFile 6235e8a3-5544-0-34349547047168016-tmp-tgz tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/tmp.tgz
+66 verbose tar pack [ '/home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz',
+66 verbose tar pack   '/home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package' ]
+67 verbose tarball /home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz
+68 verbose folder /home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package
+69 silly lockFile d73c183a-5544-0-34349547047168016-package tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package
+70 verbose lock tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package /home/gcopin/.npm/d73c183a-5544-0-34349547047168016-package.lock
+71 silly lockFile 741dfe0e-rator-grid-fce-0-0-5-package-tgz tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz
+72 verbose lock tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz /home/gcopin/.npm/741dfe0e-rator-grid-fce-0-0-5-package-tgz.lock
+73 silly lockFile d73c183a-5544-0-34349547047168016-package tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package
+74 silly lockFile d73c183a-5544-0-34349547047168016-package tar:///home/gcopin/tmp/npm-335-dofpBZM9/1396974105544-0.34349547047168016/package
+75 silly lockFile 741dfe0e-rator-grid-fce-0-0-5-package-tgz tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz
+76 silly lockFile 741dfe0e-rator-grid-fce-0-0-5-package-tgz tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz
+77 silly lockFile 949e78b0-generator-grid-fce-0-0-5-package /home/gcopin/.npm/generator-grid-fce/0.0.5/package
+78 verbose lock /home/gcopin/.npm/generator-grid-fce/0.0.5/package /home/gcopin/.npm/949e78b0-generator-grid-fce-0-0-5-package.lock
+79 silly lockFile 949e78b0-generator-grid-fce-0-0-5-package /home/gcopin/.npm/generator-grid-fce/0.0.5/package
+80 silly lockFile 949e78b0-generator-grid-fce-0-0-5-package /home/gcopin/.npm/generator-grid-fce/0.0.5/package
+81 verbose tar unpack /home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz
+82 silly lockFile 1e76090c-generator-grid-fce-0-0-5-package tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package
+83 verbose lock tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package /home/gcopin/.npm/1e76090c-generator-grid-fce-0-0-5-package.lock
+84 silly lockFile 741dfe0e-rator-grid-fce-0-0-5-package-tgz tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz
+85 verbose lock tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz /home/gcopin/.npm/741dfe0e-rator-grid-fce-0-0-5-package-tgz.lock
+86 silly gunzTarPerm modes [ '755', '644' ]
+87 silly gunzTarPerm extractEntry package.json
+88 silly gunzTarPerm extractEntry README.md
+89 silly gunzTarPerm extractEntry app/index.js
+90 silly gunzTarPerm extractEntry app/templates/Configuration/FlexForm/_clickToPlay.xml
+91 silly gunzTarPerm extractEntry app/templates/Configuration/FlexForm/_imageCaption.xml
+92 silly gunzTarPerm extractEntry app/templates/Configuration/FlexForm/_slideshow.xml
+93 silly gunzTarPerm extractEntry app/templates/Configuration/TSconfig/_clickToPlay.ts
+94 silly gunzTarPerm extractEntry app/templates/Configuration/TSconfig/_imageCaption.ts
+95 silly gunzTarPerm extractEntry app/templates/Configuration/TSconfig/_slideshow.ts
+96 silly gunzTarPerm extractEntry app/templates/Configuration/Typoscript/_clickToPlay.ts
+97 silly gunzTarPerm extractEntry app/templates/Configuration/Typoscript/_imageCaption.ts
+98 silly gunzTarPerm extractEntry app/templates/Configuration/Typoscript/_slideshow.ts
+99 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_clickToPlay.xlf
+100 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_fr.clickToPlay.xlf
+101 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_fr.imageCaption.xlf
+102 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_fr.slideshow.xlf
+103 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_imageCaption.xlf
+104 silly gunzTarPerm extractEntry app/templates/Resources/Private/Language/_slideshow.xlf
+105 silly gunzTarPerm extractEntry app/templates/Resources/Public/Icons/_clickToPlay.gif
+106 silly gunzTarPerm extractEntry app/templates/Resources/Public/Icons/_imageCaption.gif
+107 silly gunzTarPerm extractEntry app/templates/Resources/Public/Icons/_slideshow.gif
+108 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/_clickToPlay.css
+109 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/_imageCaption.css
+110 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/_slideshow.css
+111 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/fonts/slick.eot
+112 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/fonts/slick.svg
+113 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/fonts/slick.ttf
+114 silly gunzTarPerm extractEntry app/templates/Resources/Public/css/fonts/slick.woff
+115 silly gunzTarPerm extractEntry app/templates/Resources/Public/img/ajax-loader.gif
+116 silly gunzTarPerm extractEntry app/templates/Resources/Public/js/_clickToPlay.js
+117 silly gunzTarPerm extractEntry app/templates/Resources/Public/js/_slideshow.js
+118 silly gunzTarPerm extractEntry app/templates/Resources/Public/js/slick.min.js
+119 silly gunzTarPerm extractEntry app/templates/_ext_emconf.php
+120 silly gunzTarPerm extractEntry app/templates/_ext_localconf.php
+121 silly gunzTarPerm extractEntry app/templates/_ext_typoscript_setup.txt
+122 silly lockFile 1e76090c-generator-grid-fce-0-0-5-package tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package
+123 silly lockFile 1e76090c-generator-grid-fce-0-0-5-package tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package
+124 silly lockFile 741dfe0e-rator-grid-fce-0-0-5-package-tgz tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz
+125 silly lockFile 741dfe0e-rator-grid-fce-0-0-5-package-tgz tar:///home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz
+126 verbose chmod /home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz 644
+127 verbose chown /home/gcopin/.npm/generator-grid-fce/0.0.5/package.tgz [ 1000, 33 ]
+128 silly lockFile 3a52ce78- .
+129 silly lockFile 3a52ce78- .
+130 silly publish { name: 'generator-grid-fce',
+130 silly publish   version: '0.0.5',
+130 silly publish   description: 'generator to create flexible content elements with gridelements in Typo3 version 6.2 or higher',
+130 silly publish   license: 'GPL v3',
+130 silly publish   main: 'app/index.js',
+130 silly publish   repository:
+130 silly publish    { type: 'git',
+130 silly publish      url: 'https://github.com/Inouit/generator-grid-fce' },
+130 silly publish   author:
+130 silly publish    { name: 'Grégory Copin',
+130 silly publish      email: 'gregcop1@gmail.com',
+130 silly publish      url: 'https://github.com/Inouit' },
+130 silly publish   engines: { node: '>=0.10.0' },
+130 silly publish   scripts: { test: 'mocha' },
+130 silly publish   files: [ 'app' ],
+130 silly publish   keywords: [ 'yeoman-generator' ],
+130 silly publish   dependencies:
+130 silly publish    { 'yeoman-generator': '~0.16.0',
+130 silly publish      chalk: '~0.4.0',
+130 silly publish      underscore: '~1.6.0',
+130 silly publish      'underscore.string': '~2.3.3' },
+130 silly publish   devDependencies: { mocha: '*' },
+130 silly publish   peerDependencies: { yo: '>=1.0.0' },
+130 silly publish   readme: '# generator-grid-fce\n\n## Getting Started\n\n### What is generator-grid-fce?\n\nIt\'s a [Yeoman][1] generator to create flexible content elements with gridelements in [Typo3][2] version 6.2 or higher\n\n## Requirements\n### [Yeoman][3] ###\nNot every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*\n\n```\n$ npm install -g yo\n$ npm install -g generator-grid-fce\n```\n\n### [gridelements_fce][4] ###\nIn frontend typoscript configuration, the generator use this extension for building loop on flexform section\n\n### plugin configuration ###\nIt\'s a best practice to store your flex in a plugin or at least in your skin plugin. We just have some requirement for this plugin but if those files don\'t exist yet, the generator will create them for you.\n**What do we need ?**\n - in **ext_emconf.php**, a `\'createDirs\' => \'\'` should be set. It\'ll be filled when one of your FCE need a upload directory\n - in **ext_localconf.php**, a `// ## insert here` comment for TSConfig insertion\n - in **ext_typoscript_setup.txt**, a `// ## insert here` comment for Typoscript insertion\n\n\n## Launch generator\nInitiate the generator in the typo3 extension where you want to store  flexible content elements:\n\n```\n$ yo grid-fce\n```\n\nFollow instructions and build your own content element\n\n**Choose the type of custom element**\n\n     [?] Content element type: (Use arrow keys)\n        ‣ Based on Click to Play Youtube video        // -> Copy a "Click To play youtube" element\n        Based on Image Caption                        // -> Copy a "Image Caption" element\n        Based on Slideshow                            // -> Copy a "Slideshow" element\n        --------\n        Exit                                          // -> I let you guess\n\n## License\nGPL V3\n\n  [1]: http://yeoman.io\n  [2]: http://typo3.org/\n  [3]: http://yeoman.io\n  [4]: http://typo3.org/extensions/repository/view/gridelements',
+130 silly publish   readmeFilename: 'README.md',
+130 silly publish   bugs: { url: 'https://github.com/Inouit/generator-grid-fce/issues' },
+130 silly publish   _id: 'generator-grid-fce@0.0.5',
+130 silly publish   dist: { shasum: '3d49bf698497a6c4c6a771a43a1d00a8454c4dc9' },
+130 silly publish   _from: '.' }
+131 verbose url raw generator-grid-fce
+132 verbose url resolving [ 'https://registry.npmjs.org/', './generator-grid-fce' ]
+133 verbose url resolved https://registry.npmjs.org/generator-grid-fce
+134 info trying registry request attempt 1 at 18:21:46
+135 http PUT https://registry.npmjs.org/generator-grid-fce
+136 http 201 https://registry.npmjs.org/generator-grid-fce
+137 verbose url raw generator-grid-fce
+138 verbose url resolving [ 'https://registry.npmjs.org/', './generator-grid-fce' ]
+139 verbose url resolved https://registry.npmjs.org/generator-grid-fce
+140 info trying registry request attempt 1 at 18:21:47
+141 http GET https://registry.npmjs.org/generator-grid-fce
+142 http 200 https://registry.npmjs.org/generator-grid-fce
+143 error publish fail Cannot publish over existing version.
+143 error publish fail Update the 'version' field in package.json and try again.
+143 error publish fail
+143 error publish fail If the previous version was published in error, see:
+143 error publish fail     npm help unpublish
+143 error publish fail
+143 error publish fail To automatically increment version numbers, see:
+143 error publish fail     npm help version
+144 error System Linux 3.2.0-4-amd64
+145 error command "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+146 error cwd /home/gcopin/www/scripts/generator-grid-fce
+147 error node -v v0.10.16
+148 error npm -v 1.3.8
+149 error code EPUBLISHCONFLICT
+150 verbose exit [ 1, true ]

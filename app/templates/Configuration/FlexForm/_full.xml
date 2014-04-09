@@ -36,10 +36,8 @@
                 <allowed>gif,jpg,jpeg,tif,bmp,pcx,tga,png,pdf,ai</allowed>
                 <max_size>5000</max_size>
                 <uploadfolder>uploads/<%= currentDir %>/<%= params.slugifiedContentName %>/</uploadfolder>
-                <maxitems>1</maxitems>
-                <size>1</size>
-                <selectedListStyle>width:200px</selectedListStyle>
                 <show_thumbs>1</show_thumbs>
+                <maxitems>1</maxitems>
               </config>
             </TCEforms>
           </file>

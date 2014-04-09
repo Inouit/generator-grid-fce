@@ -139,7 +139,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this._fillConfFiles();
   },
 
-  _copySlideshowCaption: function() {
+  _copyFull: function() {
     // upload directory
     this.createDir = true;
 
@@ -157,7 +157,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this._fillConfFiles();
   },
 
-  _copyFull: function() {
+  _copySlideshowCaption: function() {
     // upload directory
     this.createDir = true;
 
