@@ -52,8 +52,13 @@ Follow instructions and build your own content element
 **Click to play**<br />![][5] | **Image caption**<br >![][6]
 **Slideshow**<br />![][7]     |
 
+## So what's next ? ##
+In fact, I've not reached yet my objectives with this generator. In a couple of days, I'll add a *field by field* configuration which is even better than the current models (clickToPlay, imageCaption, slideshow, full). I've done this before for [generator-wecce][8] so we can hope to have this shortly.
+After that, my vision of this generator will be reached, but may be can you share your own vision through issues or forks. Do not hesitate! I'll be glad to make this even better.
+
 ## License ##
 GPL V3
+
 
   [1]: http://yeoman.io
   [2]: http://typo3.org/
@@ -62,3 +67,4 @@ GPL V3
   [5]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/clickToPlay.jpg
   [6]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/imageCaption.jpg
   [7]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/slideshow.jpg
+  [8]: https://github.com/Inouit/generator-wecce
