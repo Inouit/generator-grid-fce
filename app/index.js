@@ -210,10 +210,11 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
   },
 
   _initCustom: function() {
-    this._promptCustom();
+    var tabField = new Array();
+    this._promptCustom(tabField);
   },
 
-  _promptCustom: function() {
+  _promptCustom: function(tab) {
     var done = this.async();
     var prompts = [
     {
@@ -235,19 +236,20 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this.prompt(prompts, function (props) {
       if(props.customField == 'exit'){
         console.log("exit");
+        this._endCustom(tab);
       }else{
-        this.field = {
+        var field = {
           type: props.customField,
           name: "",
           contentDescription: ""
         }
-        this._promptField(props.customField);
+        this._promptField(props.customField, tab, field);
       }
       done();
     }.bind(this));
   },
 
-  _promptField: function(type) {
+  _promptField: function(type, tab, field) {
     var done = this.async();
     var prompts = [
       {
@@ -262,32 +264,57 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     ];
 
     this.prompt(prompts, function (props) {
-      this.field.name = props.fieldName;
-      this.field.contentDescription = props.fieldDescription;
-      this._switchField();
-      this._promptCustom();
+      field.name = props.fieldName;
+      field.contentDescription = props.fieldDescription;
+      tab.push(field);
+      this._promptCustom(tab);
       done();
     }.bind(this));
   },
 
-  _switchField: function() {
-      switch(this.field.type) {
+  _createInput: function() {
+    console.log("Input");
+  },
+
+  _createTextarea: function() {
+    console.log("Textarea");
+  },
+
+  _createRte: function() {
+    console.log("Textarea with RTE");
+  },
+
+  _createImage: function() {
+    console.log("Image");
+  },
+
+  _createLoop: function() {
+    console.log("Loop");
+  },
+
+_switchField: function(field) {
+      switch(field.type) {
         case 'input':
-          console.log(this.field.type+"|"+this.field.name);
+          this._createInput();
           break;
         case 'textarea':
-          console.log(this.field.type+"|"+this.field.name);
+          this._createTextarea();
           break;
         case 'rte':
-          console.log(this.field.type+"|"+this.field.name);
+          this._createRte();
           break;
         case 'image':
-          console.log(this.field.type+"|"+this.field.name);
+          this._createImage();
           break;
         case 'loop':
-          console.log(this.field.type+"|"+this.field.name);
+          this._createLoop();
           break;
       }
+  },
+
+  _endCustom: function(tab) {
+    for(var i=0; i<tab.length; i++)
+      this._switchField(tab[i]);
   }
 });
 
