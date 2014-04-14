@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2012-06-13T20:22:32Z" product-name="<%= params.slugifiedContentName %>">
+    <header/>
+    <body>
+      <!-- insert here -->
+    </body>
+  </file>
+</xliff>
