@@ -83,9 +83,6 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
       case 'full':
         this._copyFull();
         break;
-      case 'empty':
-        // this._copyEmpty();
-        break;
       case 'custom':
         this._initCustom();
         break;
@@ -182,6 +179,168 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this._fillConfFiles();
   },
 
+  _initCustom: function() {
+    if(!fs.existsSync('custom.ts')) {
+      this.template(this.dirs.tsDir+'_custom.ts', 'custom.ts');
+    }
+    if(!fs.existsSync('custom.xml')) {
+      this.template(this.dirs.flexFormDir+'_custom.xml', 'custom.xml');
+    }
+    if(!fs.existsSync('custom.xlf')) {
+      this.template(this.dirs.llDir+'_custom.xlf', 'custom.xlf');
+    }
+    if(!fs.existsSync('fr.custom.xlf')) {
+      this.template(this.dirs.llDir+'_fr.custom.xlf', 'fr.custom.xlf');
+    }
+
+    var _this = this;
+    this.conflicter.resolve(function (err) {
+      _this.files = {
+        typoscript: _this.readFileAsString('custom.ts'),
+        flexform: _this.readFileAsString('custom.xml'),
+        language: _this.readFileAsString('custom.xlf'),
+        languageFr: _this.readFileAsString('fr.custom.xlf')
+      };
+      _this.tabField = new Array();
+      _this._promptCustom();
+    });
+  },
+
+  _promptCustom: function() {
+    var done = this.async();
+    var prompts = [
+    {
+      name: "customField",
+      message: "New field ?",
+      type: 'list',
+      choices: [
+        { value:'input', name:'Input' },
+        { value:'textarea', name:'Textarea' },
+        { value:'rte', name:'Textarea with RTE' },
+        { value:'image', name:'Image' },
+        { value:'loop', name:'Loop' },
+        new yeoman.inquirer.Separator(),
+        { value:'exit', name:'Exit' },
+      ]
+    }
+    ];
+
+    this.prompt(prompts, function (props) {
+      if(props.customField == 'exit'){
+        console.log("exit");
+        this._endCustom();
+      }else{
+        this._promptField(props);
+      }
+      done();
+    }.bind(this));
+  },
+
+  _promptField: function(p) {
+    var done = this.async();
+    var prompts = [
+      {
+        name: 'fieldName',
+        message: "What's the name of your "+p.customField+"?",
+        default: 'fieldcustom'
+      },
+      {
+        name: 'fieldDescription',
+        message: 'Provide a short description!'
+      }
+    ];
+
+    this.prompt(prompts, function (props) {
+      var field = {
+          type: p.customField,
+          name: props.fieldName,
+          contentDescription: props.fieldDescription
+      }
+      this.tabField.push(field);
+      this._promptCustom();
+      done();
+    }.bind(this));
+  },
+
+  _createInput: function(cpt, field) {
+    var index =cpt;
+
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Input ## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Input <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", "Input <!-- insert here -->");
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Input <!-- insert here -->");
+    console.log("Input");
+  },
+
+  _createTextarea: function(cpt, field) {
+    var index =cpt;
+
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Textarea ## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Textarea <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", "Textarea <!-- insert here -->");
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Textarea <!-- insert here -->");
+    console.log("Textarea");
+  },
+
+  _createRte: function(cpt, field) {
+    var index =cpt;
+
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Rte ## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Rte <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", "Rte <!-- insert here -->");
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Rte <!-- insert here -->");
+    console.log("Textarea with RTE");
+  },
+
+  _createImage: function(cpt, field) {
+    var index =cpt;
+
+    this.createDir = true;
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Image ## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Image <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", "Image <!-- insert here -->");
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Image <!-- insert here -->");
+    console.log("Image");
+  },
+
+  _createLoop: function(cpt, field) {
+    var index =cpt;
+
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Loop ## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Loop <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", "Loop <!-- insert here -->");
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Loop <!-- insert here -->");
+    console.log("Loop");
+  },
+
+  _endCustom: function() {
+    for(var i=0; i<this.tabField.length; i++) {
+      var field = this.tabField[i];
+      switch(this.tabField[i].type) {
+        case 'input':
+          this._createInput(i, field);
+          break;
+        case 'textarea':
+          this._createTextarea(i, field);
+          break;
+        case 'rte':
+          this._createRte(i, field);
+          break;
+        case 'image':
+          this._createImage(i, field);
+          break;
+        case 'loop':
+          this._createLoop(i, field);
+          break;
+      }
+    }
+
+    this.write("custom.ts", this.files.typoscript);
+    this.write("custom.xml", this.files.flexform);
+    this.write("custom.xlf", this.files.language);
+    this.write("fr.custom.xlf", this.files.languageFr);
+  },
+
   _fillConfFiles:function () {
     // configuration include
     var ext_localconf = this.readFileAsString('ext_localconf.php');
@@ -208,114 +367,6 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
       }
     }
   },
-
-  _initCustom: function() {
-    var tabField = new Array();
-    this._promptCustom(tabField);
-  },
-
-  _promptCustom: function(tab) {
-    var done = this.async();
-    var prompts = [
-    {
-      name: "customField",
-      message: "New field ?",
-      type: 'list',
-      choices: [
-        { value:'input', name:'Input' },
-        { value:'textarea', name:'Textarea' },
-        { value:'rte', name:'Textarea with RTE' },
-        { value:'image', name:'Image' },
-        { value:'loop', name:'Loop' },
-        new yeoman.inquirer.Separator(),
-        { value:'exit', name:'Exit' },
-      ]
-    }
-    ];
-
-    this.prompt(prompts, function (props) {
-      if(props.customField == 'exit'){
-        console.log("exit");
-        this._endCustom(tab);
-      }else{
-        var field = {
-          type: props.customField,
-          name: "",
-          contentDescription: ""
-        }
-        this._promptField(props.customField, tab, field);
-      }
-      done();
-    }.bind(this));
-  },
-
-  _promptField: function(type, tab, field) {
-    var done = this.async();
-    var prompts = [
-      {
-        name: 'fieldName',
-        message: "What's the name of your "+type+"?",
-        default: 'fieldcustom'
-      },
-      {
-        name: 'fieldDescription',
-        message: 'Provide a short description!'
-      }
-    ];
-
-    this.prompt(prompts, function (props) {
-      field.name = props.fieldName;
-      field.contentDescription = props.fieldDescription;
-      tab.push(field);
-      this._promptCustom(tab);
-      done();
-    }.bind(this));
-  },
-
-  _createInput: function() {
-    console.log("Input");
-  },
-
-  _createTextarea: function() {
-    console.log("Textarea");
-  },
-
-  _createRte: function() {
-    console.log("Textarea with RTE");
-  },
-
-  _createImage: function() {
-    console.log("Image");
-  },
-
-  _createLoop: function() {
-    console.log("Loop");
-  },
-
-_switchField: function(field) {
-      switch(field.type) {
-        case 'input':
-          this._createInput();
-          break;
-        case 'textarea':
-          this._createTextarea();
-          break;
-        case 'rte':
-          this._createRte();
-          break;
-        case 'image':
-          this._createImage();
-          break;
-        case 'loop':
-          this._createLoop();
-          break;
-      }
-  },
-
-  _endCustom: function(tab) {
-    for(var i=0; i<tab.length; i++)
-      this._switchField(tab[i]);
-  }
 });
 
 module.exports = GridelementsGenerator;
