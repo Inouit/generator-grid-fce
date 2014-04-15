@@ -77,6 +77,45 @@ Follow instructions and build your own content element
 **Image caption**<br >![][7] | **Custom: highlighted numbers**<br >![][8]
 **Custom: blocks in columns**<br >![][9] | **Custom: slider with count**<br />![][10]
 
+##Quick demo##
+Here's a quick demo of a slideshow custom element
+![][12]
+and the results
+```
+# file : Configuration/Typoscript/slideshow.ts
+page.includeCSS.slideshow = EXT:skinFlex/Resources/Public/css/slideshow.css
+
+tt_content.gridelements_pi1.20.10.setup.slideshow {
+  prepend = COA
+  prepend {
+    5 = < lib.stdheader
+    10 = TEXT
+    10 {
+      field = flexform_title
+    }
+    20 = FLEXFORM_SECTION
+    20 {
+      rootPath = section:slides/el
+      10 = COA
+      10 {
+        wrap = <div class="slide">|</div>
+        10 = IMAGE
+        10 {
+          file.import.data = section_item:slide/el/image
+          file.import.wrap = uploads/skinFlex/slideshow/
+        }
+        20 = TEXT
+        20 {
+          data = section_item:slide/el/caption
+        }
+        ## // insert here
+      }
+    }
+  }
+  outerWrap = <div class="slideshow">|</div>
+}
+```
+
 ## Thanks ##
 Thanks to [JuJulien][11] for his help on the custom generator.
 
@@ -95,3 +134,4 @@ GPL V3
   [9]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-1.jpg
   [10]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-2.jpg
   [11]: https://github.com/JuJulien
+  [12]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/demo-custom.gif
