@@ -33,7 +33,6 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     {
       name: 'contentName',
       message: "What's the name of your content element?",
-      default: 'custom'
     },
     {
       name: 'contentDescription',
@@ -45,12 +44,11 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
       message: 'Content element type:',
       choices: [
         { value:'custom', name:'Create a custom content element' },
-        // new yeoman.inquirer.Separator(),
+        new yeoman.inquirer.Separator(),
         { value:'clickToPlay', name:'Based on Click to Play Youtube video' },
         { value:'imageCaption', name:'Based on Image Caption' },
         { value:'slideshow', name:'Based on Slideshow' },
         { value:'full', name:'Full content element' },
-        // { value:'empty', name:'Empty content element' },
         new yeoman.inquirer.Separator(),
         { value:'exit', name:'Exit' },
       ]
@@ -180,26 +178,21 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
   },
 
   _initCustom: function() {
-    if(!fs.existsSync('custom.ts')) {
-      this.template(this.dirs.tsDir+'_custom.ts', 'custom.ts');
-    }
-    if(!fs.existsSync('custom.xml')) {
-      this.template(this.dirs.flexFormDir+'_custom.xml', 'custom.xml');
-    }
-    if(!fs.existsSync('custom.xlf')) {
-      this.template(this.dirs.llDir+'_custom.xlf', 'custom.xlf');
-    }
-    if(!fs.existsSync('fr.custom.xlf')) {
-      this.template(this.dirs.llDir+'_fr.custom.xlf', 'fr.custom.xlf');
-    }
+    // copy default files
+    this.template(this.dirs.flexFormDir+'_custom.xml', this.dirs.flexFormDir+this.params.slug+'.xml');
+    this.template(this.dirs.tsConfigDir+'_custom.ts', this.dirs.tsConfigDir+this.params.slug+'.ts');
+    this.template(this.dirs.tsDir+'_custom.ts', this.dirs.tsDir+this.params.slug+'.ts');
+    this.template(this.dirs.llDir+'_custom.xlf', this.dirs.llDir+this.params.slug+'.xlf');
+    this.template(this.dirs.llDir+'_fr.custom.xlf', this.dirs.llDir+'fr.'+this.params.slug+'.xlf');
+    this.copy(this.dirs.iconsDir+'_empty.gif', this.dirs.iconsDir+this.params.slug+'.gif');
 
     var _this = this;
     this.conflicter.resolve(function (err) {
       _this.files = {
-        typoscript: _this.readFileAsString('custom.ts'),
-        flexform: _this.readFileAsString('custom.xml'),
-        language: _this.readFileAsString('custom.xlf'),
-        languageFr: _this.readFileAsString('fr.custom.xlf')
+        typoscript: _this.readFileAsString(_this.dirs.tsDir+_this.params.slug+'.ts'),
+        flexform: _this.readFileAsString(_this.dirs.flexFormDir+_this.params.slug+'.xml'),
+        language: _this.readFileAsString(_this.dirs.llDir+_this.params.slug+'.xlf'),
+        languageFr: _this.readFileAsString(_this.dirs.llDir+'fr.'+_this.params.slug+'.xlf')
       };
       _this.tabField = new Array();
       _this._promptCustom();
@@ -211,7 +204,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     var prompts = [
     {
       name: "customField",
-      message: "New field ?",
+      message: "Do you wan't another item?",
       type: 'list',
       choices: [
         { value:'input', name:'Input' },
@@ -220,14 +213,13 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
         { value:'image', name:'Image' },
         { value:'loop', name:'Loop' },
         new yeoman.inquirer.Separator(),
-        { value:'exit', name:'Exit' },
+        { value:'exit', name:'No thanks, that\'s enough.' },
       ]
     }
     ];
 
     this.prompt(prompts, function (props) {
       if(props.customField == 'exit'){
-        console.log("exit");
         this._endCustom();
       }else{
         this._promptField(props);
@@ -242,7 +234,6 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
       {
         name: 'fieldName',
         message: "What's the name of your "+p.customField+"?",
-        default: 'fieldcustom'
       },
       {
         name: 'fieldDescription',
@@ -253,7 +244,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this.prompt(prompts, function (props) {
       var field = {
           type: p.customField,
-          name: props.fieldName,
+          name: _.camelize(_.slugify(props.fieldName)),
           contentDescription: props.fieldDescription
       }
       this.tabField.push(field);
@@ -262,83 +253,115 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  _createInput: function(cpt, field) {
-    var index =cpt;
+  _createInput: function(cpt, field, loopName) {
+    var index =cpt*10;
+    if(loopName) {
+      var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
+      var tab = '      ';
+    }else {
+      var dataPath = 'field = flexform_'+field.name;
+      var tab = '    ';
+    }
 
-    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Input ## // insert here");
-    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Input <!-- insert here -->");
-    this.files.language = this.files.language.replace("<!-- insert here -->", "Input <!-- insert here -->");
-    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Input <!-- insert here -->");
-    console.log("Input");
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = TEXT\n"+tab+index+" {\n"+tab+"  "+dataPath+"\n"+tab+"}\n\n"+tab+"## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tab+"        <TCEforms>\n"+tab+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tab+"          <config>\n"+tab+"            <type>input</type>\n"+tab+"          </config>\n"+tab+"        </TCEforms>\n"+tab+"      </"+field.name+">\n\n"+tab+"      <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
 
-  _createTextarea: function(cpt, field) {
-    var index =cpt;
+  _createTextarea: function(cpt, field, loopName) {
+    var index =cpt*10;
+    if(loopName) {
+      var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
+      var tab = '      ';
+    }else {
+      var dataPath = 'field = flexform_'+field.name;
+      var tab = '    ';
+    }
 
-    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Textarea ## // insert here");
-    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Textarea <!-- insert here -->");
-    this.files.language = this.files.language.replace("<!-- insert here -->", "Textarea <!-- insert here -->");
-    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Textarea <!-- insert here -->");
-    console.log("Textarea");
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = TEXT\n"+tab+index+" {\n"+tab+"  "+dataPath+"\n"+tab+"}\n\n"+tab+"## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tab+"        <TCEforms>\n"+tab+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tab+"          <config>\n"+tab+"            <type>text</type>\n"+tab+"            <cols>50</cols>\n"+tab+"            <rows>5</rows>\n"+tab+"          </config>\n"+tab+"        </TCEforms>\n"+tab+"      </"+field.name+">\n\n"+tab+"      <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
 
-  _createRte: function(cpt, field) {
-    var index =cpt;
+  _createRte: function(cpt, field, loopName) {
+    var index =cpt*10;
+    if(loopName) {
+      var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
+      var tab = '      ';
+    }else {
+      var dataPath = 'field = flexform_'+field.name;
+      var tab = '    ';
+    }
 
-    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Rte ## // insert here");
-    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Rte <!-- insert here -->");
-    this.files.language = this.files.language.replace("<!-- insert here -->", "Rte <!-- insert here -->");
-    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Rte <!-- insert here -->");
-    console.log("Textarea with RTE");
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = TEXT\n"+tab+index+" {\n"+tab+"  "+dataPath+"\n"+tab+"  stdWrap.parseFunc < lib.parseFunc_RTE\n"+tab+"}\n\n"+tab+"## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tab+"        <TCEforms>\n"+tab+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tab+"          <config>\n"+tab+"            <type>text</type>\n"+tab+"            <cols>50</cols>\n"+tab+"            <rows>5</rows>\n"+tab+"          </config>\n"+tab+"          <defaultExtras>richtext[*]:rte_transform[mode=ts_css]</defaultExtras>\n"+tab+"        </TCEforms>\n"+tab+"      </"+field.name+">\n\n"+tab+"      <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
 
-  _createImage: function(cpt, field) {
-    var index =cpt;
+  _createImage: function(cpt, field, loopName) {
+    this.createDir = true;
+    var index =cpt*10;
+    if(loopName) {
+      var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
+      var tab = '      ';
+    }else {
+      var dataPath = 'field = flexform_'+field.name;
+      var tab = '    ';
+    }
 
     this.createDir = true;
-    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Image ## // insert here");
-    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Image <!-- insert here -->");
-    this.files.language = this.files.language.replace("<!-- insert here -->", "Image <!-- insert here -->");
-    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Image <!-- insert here -->");
-    console.log("Image");
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = IMAGE\n"+tab+index+" {\n"+tab+"  file.import."+dataPath+"\n"+tab+"  file.import.wrap = uploads/"+this.currentDir+"/"+this.params.slugifiedContentName+"/\n"+tab+"}\n\n"+tab+"## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tab+"        <TCEforms>\n"+tab+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tab+"          <config>\n"+tab+"            <type>group</type>\n"+tab+"            <internal_type>file</internal_type>\n"+tab+"            <allowed>gif,jpg,jpeg,tif,bmp,pcx,tga,png,pdf,ai</allowed>\n"+tab+"            <max_size>5000</max_size>\n"+tab+"            <uploadfolder>uploads/"+this.currentDir+"/"+this.params.slugifiedContentName+"/</uploadfolder>\n"+tab+"            <show_thumbs>1</show_thumbs>\n"+tab+"            <maxitems>1</maxitems>\n"+tab+"          </config>\n"+tab+"        </TCEforms>\n"+tab+"      </"+field.name+">\n\n"+tab+"      <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
 
-  _createLoop: function(cpt, field) {
-    var index =cpt;
+  _createLoop: function(cpt, field, loopName) {
+    var index =cpt*10;
+    var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
+    if(loopName) {
+      var tab = '      ';
+    }else {
+      var tab = '    ';
+    }
 
-    this.files.typoscript = this.files.typoscript.replace("## // insert here", "Loop ## // insert here");
-    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "Loop <!-- insert here -->");
-    this.files.language = this.files.language.replace("<!-- insert here -->", "Loop <!-- insert here -->");
-    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", "Loop <!-- insert here -->");
-    console.log("Loop");
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = FLEXFORM_SECTION\n"+tab+index+" {\n"+tab+"  rootPath = section:"+field.name+"s/el\n\n"+tab+"  10 = COA\n"+tab+"  10 {\n"+tab+"    ## // insert here\n"+tab+"  }\n\n"+tab+"}\n");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+"s>\n"+tab+"        <section>1</section>\n"+tab+"        <type>array</type>\n"+tab+"        <el>\n"+tab+"          <"+field.name+">\n"+tab+"            <type>array</type>\n"+tab+"            <tx_templavoila>\n"+tab+"              <title>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</title>\n"+tab+"            </tx_templavoila>\n"+tab+"            <el>\n"+tab+"              <!-- insert here -->\n"+tab+"            </el>\n"+tab+"          </"+field.name+">\n"+tab+"        </el>\n"+tab+"      </"+field.name+"s>\n");
+    this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
 
   _endCustom: function() {
+    var loopName = false;
+    var index = 0;
     for(var i=0; i<this.tabField.length; i++) {
+      index ++;
       var field = this.tabField[i];
       switch(this.tabField[i].type) {
         case 'input':
-          this._createInput(i, field);
+          this._createInput(index, field, loopName);
           break;
         case 'textarea':
-          this._createTextarea(i, field);
+          this._createTextarea(index, field, loopName);
           break;
         case 'rte':
-          this._createRte(i, field);
+          this._createRte(index, field, loopName);
           break;
         case 'image':
-          this._createImage(i, field);
+          this._createImage(index, field, loopName);
           break;
         case 'loop':
-          this._createLoop(i, field);
+          this._createLoop(index, field, loopName);
+          loopName = field.name;
+          index = 0;
           break;
       }
     }
 
-    this.write("custom.ts", this.files.typoscript);
-    this.write("custom.xml", this.files.flexform);
-    this.write("custom.xlf", this.files.language);
-    this.write("fr.custom.xlf", this.files.languageFr);
+    this._fillConfFiles();
   },
 
   _fillConfFiles:function () {
@@ -352,15 +375,29 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     ext_typoscript_setup = ext_typoscript_setup.replace("## // insert here", "# // "+this.params.contentName+"\n<INCLUDE_TYPOSCRIPT: source=\"FILE:EXT:"+this.currentDir+"/Configuration/Typoscript/"+this.params.slugifiedContentName+".ts\">\n## // insert here");
     this.write('ext_typoscript_setup.txt',ext_typoscript_setup);
 
+    // custom configuration include
+    if(this.files && this.files.typoscript) {
+      this.write(this.dirs.tsDir+this.params.slug+".ts", this.files.typoscript);
+    }
+    if(this.files && this.files.flexform) {
+      this.write(this.dirs.flexFormDir+this.params.slug+".xml", this.files.flexform);
+    }
+    if(this.files && this.files.language) {
+      this.write(this.dirs.llDir+this.params.slug+".xlf", this.files.language);
+    }
+    if(this.files && this.files.languageFr) {
+      this.write(this.dirs.llDir+"fr."+this.params.slug+".xlf", this.files.languageFr);
+    }
+
     // upload directory if needed
     if (this.createDir) {
       var ext_emconf = this.readFileAsString('ext_emconf.php');
       var matches = ext_emconf.match(/'createDirs' => '([a-zA-Z0-9,\/ ]*)'/g)
       if (matches) {
         if(matches[0].length < 30) {
-          ext_emconf = ext_emconf.replace(/'createDirs' => '([a-zA-Z0-9,\/ ]*)'/g,  "'createDirs' => 'uploads/skinFlex/"+this.params.slugifiedContentName+"/'");
+          ext_emconf = ext_emconf.replace(/'createDirs' => '([a-zA-Z0-9,\/ ]*)'/g,  "'createDirs' => 'uploads/"+this.currentDir+"/"+this.params.slugifiedContentName+"/'");
         }else {
-          ext_emconf = ext_emconf.replace(/'createDirs' => '([a-zA-Z0-9,\/ ]*)'/g,  "'createDirs' => '$1, uploads/skinFlex/"+this.params.slugifiedContentName+"/'");
+          ext_emconf = ext_emconf.replace(/'createDirs' => '([a-zA-Z0-9,\/ ]*)'/g,  "'createDirs' => '$1, uploads/"+this.currentDir+"/"+this.params.slugifiedContentName+"/'");
         }
 
         this.write('ext_emconf.php',ext_emconf);
