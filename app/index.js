@@ -257,14 +257,15 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     var index =cpt*10;
     if(loopName) {
       var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
-      var tab = '      ';
+      var tab = '        ';
+      var tabFlex = '            ';
     }else {
       var dataPath = 'field = flexform_'+field.name;
-      var tab = '    ';
+      var tab = tabFlex = '    ';
     }
 
     this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = TEXT\n"+tab+index+" {\n"+tab+"  "+dataPath+"\n"+tab+"}\n\n"+tab+"## // insert here");
-    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tab+"        <TCEforms>\n"+tab+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tab+"          <config>\n"+tab+"            <type>input</type>\n"+tab+"          </config>\n"+tab+"        </TCEforms>\n"+tab+"      </"+field.name+">\n\n"+tab+"      <!-- insert here -->");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tabFlex+"        <TCEforms>\n"+tabFlex+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tabFlex+"          <config>\n"+tabFlex+"            <type>input</type>\n"+tabFlex+"          </config>\n"+tabFlex+"        </TCEforms>\n"+tabFlex+"      </"+field.name+">\n\n"+tabFlex+"      <!-- insert here -->");
     this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
     this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
@@ -273,14 +274,15 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     var index =cpt*10;
     if(loopName) {
       var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
-      var tab = '      ';
+      var tab = '        ';
+      var tabFlex = '            ';
     }else {
       var dataPath = 'field = flexform_'+field.name;
-      var tab = '    ';
+      var tab = tabFlex = '    ';
     }
 
     this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = TEXT\n"+tab+index+" {\n"+tab+"  "+dataPath+"\n"+tab+"}\n\n"+tab+"## // insert here");
-    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tab+"        <TCEforms>\n"+tab+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tab+"          <config>\n"+tab+"            <type>text</type>\n"+tab+"            <cols>50</cols>\n"+tab+"            <rows>5</rows>\n"+tab+"          </config>\n"+tab+"        </TCEforms>\n"+tab+"      </"+field.name+">\n\n"+tab+"      <!-- insert here -->");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tabFlex+"        <TCEforms>\n"+tabFlex+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tabFlex+"          <config>\n"+tabFlex+"            <type>text</type>\n"+tabFlex+"            <cols>50</cols>\n"+tabFlex+"            <rows>5</rows>\n"+tabFlex+"          </config>\n"+tabFlex+"        </TCEforms>\n"+tabFlex+"      </"+field.name+">\n\n"+tabFlex+"      <!-- insert here -->");
     this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
     this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
@@ -289,14 +291,15 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     var index =cpt*10;
     if(loopName) {
       var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
-      var tab = '      ';
+      var tab = '        ';
+      var tabFlex = '            ';
     }else {
       var dataPath = 'field = flexform_'+field.name;
-      var tab = '    ';
+      var tab = tabFlex = '    ';
     }
 
     this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = TEXT\n"+tab+index+" {\n"+tab+"  "+dataPath+"\n"+tab+"  stdWrap.parseFunc < lib.parseFunc_RTE\n"+tab+"}\n\n"+tab+"## // insert here");
-    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tab+"        <TCEforms>\n"+tab+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tab+"          <config>\n"+tab+"            <type>text</type>\n"+tab+"            <cols>50</cols>\n"+tab+"            <rows>5</rows>\n"+tab+"          </config>\n"+tab+"          <defaultExtras>richtext[*]:rte_transform[mode=ts_css]</defaultExtras>\n"+tab+"        </TCEforms>\n"+tab+"      </"+field.name+">\n\n"+tab+"      <!-- insert here -->");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tabFlex+"        <TCEforms>\n"+tabFlex+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tabFlex+"          <config>\n"+tabFlex+"            <type>text</type>\n"+tabFlex+"            <cols>50</cols>\n"+tabFlex+"            <rows>5</rows>\n"+tabFlex+"          </config>\n"+tabFlex+"          <defaultExtras>richtext[*]:rte_transform[mode=ts_css]</defaultExtras>\n"+tabFlex+"        </TCEforms>\n"+tabFlex+"      </"+field.name+">\n\n"+tabFlex+"      <!-- insert here -->");
     this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
     this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
@@ -306,15 +309,16 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     var index =cpt*10;
     if(loopName) {
       var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
-      var tab = '      ';
+      var tab = '        ';
+      var tabFlex = '            ';
     }else {
       var dataPath = 'field = flexform_'+field.name;
-      var tab = '    ';
+      var tab = tabFlex = '    ';
     }
 
     this.createDir = true;
     this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = IMAGE\n"+tab+index+" {\n"+tab+"  file.import."+dataPath+"\n"+tab+"  file.import.wrap = uploads/"+this.currentDir+"/"+this.params.slugifiedContentName+"/\n"+tab+"}\n\n"+tab+"## // insert here");
-    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tab+"        <TCEforms>\n"+tab+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tab+"          <config>\n"+tab+"            <type>group</type>\n"+tab+"            <internal_type>file</internal_type>\n"+tab+"            <allowed>gif,jpg,jpeg,tif,bmp,pcx,tga,png,pdf,ai</allowed>\n"+tab+"            <max_size>5000</max_size>\n"+tab+"            <uploadfolder>uploads/"+this.currentDir+"/"+this.params.slugifiedContentName+"/</uploadfolder>\n"+tab+"            <show_thumbs>1</show_thumbs>\n"+tab+"            <maxitems>1</maxitems>\n"+tab+"          </config>\n"+tab+"        </TCEforms>\n"+tab+"      </"+field.name+">\n\n"+tab+"      <!-- insert here -->");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tabFlex+"        <TCEforms>\n"+tabFlex+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tabFlex+"          <config>\n"+tabFlex+"            <type>group</type>\n"+tabFlex+"            <internal_type>file</internal_type>\n"+tabFlex+"            <allowed>gif,jpg,jpeg,tif,bmp,pcx,tga,png,pdf,ai</allowed>\n"+tabFlex+"            <max_size>5000</max_size>\n"+tabFlex+"            <uploadfolder>uploads/"+this.currentDir+"/"+this.params.slugifiedContentName+"/</uploadfolder>\n"+tabFlex+"            <show_thumbs>1</show_thumbs>\n"+tabFlex+"            <maxitems>1</maxitems>\n"+tabFlex+"          </config>\n"+tabFlex+"        </TCEforms>\n"+tabFlex+"      </"+field.name+">\n\n"+tabFlex+"      <!-- insert here -->");
     this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
     this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
@@ -322,13 +326,13 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
   _createLoop: function(cpt, field, loopName) {
     var index =cpt*10;
     var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
-    if(loopName) {
-      var tab = '      ';
-    }else {
-      var tab = '    ';
-    }
+    var tab = '    ';
+    // if(loopName) {
+    //   var tab = '      ';
+    // }else {
+    // }
 
-    this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = FLEXFORM_SECTION\n"+tab+index+" {\n"+tab+"  rootPath = section:"+field.name+"s/el\n\n"+tab+"  10 = COA\n"+tab+"  10 {\n"+tab+"    ## // insert here\n"+tab+"  }\n\n"+tab+"}\n");
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = FLEXFORM_SECTION\n"+tab+index+" {\n"+tab+"  rootPath = section:"+field.name+"s/el\n\n"+tab+"  10 = COA\n"+tab+"  10 {\n"+tab+'    wrap = <div class="'+field.name+'">|</div>\n\n'+tab+"    ## // insert here\n"+tab+"  }\n\n"+tab+"}\n");
     this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+"s>\n"+tab+"        <section>1</section>\n"+tab+"        <type>array</type>\n"+tab+"        <el>\n"+tab+"          <"+field.name+">\n"+tab+"            <type>array</type>\n"+tab+"            <tx_templavoila>\n"+tab+"              <title>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</title>\n"+tab+"            </tx_templavoila>\n"+tab+"            <el>\n"+tab+"              <!-- insert here -->\n"+tab+"            </el>\n"+tab+"          </"+field.name+">\n"+tab+"        </el>\n"+tab+"      </"+field.name+"s>\n");
     this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
     this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.title" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');

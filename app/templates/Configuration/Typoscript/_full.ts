@@ -27,7 +27,7 @@ tt_content.gridelements_pi1.20.10.setup.<%= params.slugifiedContentName %> {
     40 {
       rootPath = section:loopItems/el
 
-      10 = TEXT
+      10 = COA
       10{
         #data = section_item:loopItem/el/file
       }
