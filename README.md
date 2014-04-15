@@ -19,15 +19,25 @@ $ npm install -g generator-grid-fce
 In frontend typoscript configuration, the generator use gridelements_fce for building loop on flexform section
 
 #### plugin configuration ####
-It's a best practice to store your flex in a plugin or at least in your skin plugin. We just have some requirement for this plugin but if those files don't exist yet, the generator will create them for you.
-**What do we need ?**
- - in **ext_emconf.php**, a `'createDirs' => ''` should be set. It'll be filled when one of your FCE need a upload directory
+It's a good practice to store all your flexible contents in a separated plugin or at least in your skin plugin.
+
+--------------------------
+#####**I don't have such a thing !**#####
+
+Don't worry ! Create a directory in *localconf/ext/* and go inside it
+Launch the generator and it'll make this directory a clean Typo3 plugin, ready to install.
+
+--------------------------
+#####**I have a skin plugin, what should I do?**#####
+We just have some requirements in the configuration files of your plugin:
+
+ - in **ext_emconf.php**, a `'createDirs' => ''` should be set. It'll be filled when one of your FCE need an upload directory
  - in **ext_localconf.php**, a `// ## insert here` comment for TSConfig insertion
  - in **ext_typoscript_setup.txt**, a `## // insert here` comment for Typoscript insertion
 
 
 ## Launch generator ##
-Initiate the generator in the typo3 extension where you want to store  flexible content elements:
+Initiate the generator in the typo3 extension where flexible content elements will be stored:
 
 ```
 $ yo grid-fce
@@ -38,7 +48,9 @@ Follow instructions and build your own content element
 **Choose the type of custom element**
 ```
 [?] Content element type: (Use arrow keys)
-‣ Based on Click to Play Youtube video  // -> Copy a "Click To play" element
+‣ Create a custom content element       // -> Create custom: field by field
+  --------
+  Based on Click to Play Youtube video  // -> Copy a "Click To play" element
   Based on Image Caption                // -> Copy a "Image Caption" element
   Based on Slideshow                    // -> Copy a "Slideshow" element
   Full content element                  // -> Copy a full element
@@ -46,15 +58,25 @@ Follow instructions and build your own content element
   Exit                                  // -> I let you guess
 ```
 
-##FCE screenshots##
-|                             |                              |
-:---------------------------: | :--------------------------:
-**Click to play**<br />![][5] | **Image caption**<br >![][6]
-**Slideshow**<br />![][7]     |
+**Loop on the custom fields you want to insert**
+```
+  [?] Do you want another item? (Use arrow keys)
+  ‣ Input                                     // -> Insert an input field
+  Textarea                                    // -> Insert an textarea field
+  Textarea with RTE                           // -> Insert an textarea field with Wysiwyg configuration
+  Image                                       // -> Insert an image field
+  Loop                                        // -> Insert an loop configuration
+  --------
+  No thanks, that's enough.                   // -> Generate all fields that you've chosen before
+```
 
-## So what's next ? ##
-In fact, I've not reached yet my objectives with this generator. In a couple of days, I'll add a *field by field* configuration which is even better than the current models (clickToPlay, imageCaption, slideshow, full). I've done this before for [generator-wecce][8] so we can hope to have this shortly.
-After that, my vision of this generator will be reached, but may be can you share your own vision through issues or forks. Do not hesitate! I'll be glad to make this even better.
+
+##FCE screenshots example##
+**Click to play**<br />![][5] | **Slideshow**<br />![][7]
+:---------------------------: | :--------------------------:
+**Image caption**<br >![][6] | **Custom: highlighted numbers**<br >![][11]
+**Custom: blocks in columns**<br >![][9] | **Custom: slider with count**<br />![][10]
+
 
 ## License ##
 GPL V3
@@ -63,8 +85,11 @@ GPL V3
   [1]: http://yeoman.io
   [2]: http://typo3.org/
   [3]: http://yeoman.io
-  [4]: http://typo3.org/extensions/repository/view/gridelements
+  [4]: http://typo3.org/extensions/repository/view/gridelements_fce
   [5]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/clickToPlay.jpg
   [6]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/imageCaption.jpg
   [7]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/slideshow.jpg
   [8]: https://github.com/Inouit/generator-wecce
+  [9]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-1.jpg
+  [10]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-2.jpg
+  [11]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-3.jpg

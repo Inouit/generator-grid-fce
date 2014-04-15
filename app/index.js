@@ -204,7 +204,7 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     var prompts = [
     {
       name: "customField",
-      message: "Do you wan't another item?",
+      message: "Do you want another item?",
       type: 'list',
       choices: [
         { value:'input', name:'Input' },
