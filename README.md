@@ -72,11 +72,13 @@ Follow instructions and build your own content element
 
 
 ##FCE screenshots example##
-**Click to play**<br />![][5] | **Slideshow**<br />![][7]
+**Click to play**<br />![][5] | **Slideshow**<br />![][6]
 :---------------------------: | :--------------------------:
-**Image caption**<br >![][6] | **Custom: highlighted numbers**<br >![][11]
+**Image caption**<br >![][7] | **Custom: highlighted numbers**<br >![][8]
 **Custom: blocks in columns**<br >![][9] | **Custom: slider with count**<br />![][10]
 
+## Thanks ##
+Thanks to [JuJulien][11] for his help on the custom generator.
 
 ## License ##
 GPL V3
@@ -87,9 +89,9 @@ GPL V3
   [3]: http://yeoman.io
   [4]: http://typo3.org/extensions/repository/view/gridelements_fce
   [5]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/clickToPlay.jpg
-  [6]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/imageCaption.jpg
-  [7]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/slideshow.jpg
-  [8]: https://github.com/Inouit/generator-wecce
+  [6]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/slideshow.jpg
+  [7]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/imageCaption.jpg
+  [8]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-3.jpg
   [9]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-1.jpg
   [10]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-2.jpg
-  [11]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-3.jpg
+  [11]: https://github.com/JuJulien
