@@ -117,7 +117,7 @@ tt_content.gridelements_pi1.20.10.setup.slideshow {
 ```
 
 ## Thanks ##
-Thanks to [JuJulien][11] for his help on the custom generator.
+Thanks to [Plou][13] and [JuJulien][11] for his help on the custom generator.
 
 ## License ##
 GPL V3
@@ -135,3 +135,4 @@ GPL V3
   [10]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-2.jpg
   [11]: https://github.com/JuJulien
   [12]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/demo-custom.gif
+  [13]: https://github.com/Plou
