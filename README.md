@@ -78,9 +78,12 @@ Follow instructions and build your own content element
 **Custom: blocks in columns**<br >![][9] | **Custom: slider with count**<br />![][10]
 
 ##Quick demo##
-Here's a quick demo of a slideshow custom element
+Here's a quick demo of a slideshow custom element  
+
 ![][12]
-and the results
+
+and the results  
+
 ```
 # file : Configuration/Typoscript/slideshow.ts
 page.includeCSS.slideshow = EXT:skinFlex/Resources/Public/css/slideshow.css
@@ -117,7 +120,7 @@ tt_content.gridelements_pi1.20.10.setup.slideshow {
 ```
 
 ## Thanks ##
-Thanks to [JuJulien][11] for his help on the custom generator.
+Thanks to [Plou][13] and [JuJulien][11] for their help.
 
 ## License ##
 GPL V3
@@ -135,3 +138,4 @@ GPL V3
   [10]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/custom-2.jpg
   [11]: https://github.com/JuJulien
   [12]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/demo-custom.gif
+  [13]: https://github.com/Plou
