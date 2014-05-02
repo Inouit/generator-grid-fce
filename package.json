@@ -1,6 +1,6 @@
 {
   "name": "generator-grid-fce",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "generator to create flexible content elements with gridelements in Typo3 version 6.2 or higher",
   "license": "GPL v3",
   "main": "app/index.js",
