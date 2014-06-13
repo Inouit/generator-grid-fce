@@ -3,6 +3,10 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2012-06-13T20:22:32Z" product-name="<%= params.slugifiedContentName %>">
     <header/>
     <body>
+      <trans-unit id="flexform.sheets.general" xml:space="preserve">
+        <source>Settings</source>
+        <target state="translated">Paramètres</target>
+      </trans-unit>
       <trans-unit id="TSconfig.<%= params.slugifiedContentName %>.title" xml:space="preserve" approved="yes">
         <source><%= params.contentName %></source>
         <target state="translated"><%= params.contentName %></target>

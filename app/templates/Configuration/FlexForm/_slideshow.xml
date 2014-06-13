@@ -4,7 +4,7 @@
       <sDEF>
       <ROOT>
         <TCEforms>
-          <sheetTitle>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %>locallang_db.xlf:flexform.sheets.general</sheetTitle>
+          <sheetTitle>LLL:EXT:<%= currentDir %>/<%= dirs.llDir %><%= params.slugifiedContentName %>.xlf:flexform.sheets.general</sheetTitle>
         </TCEforms>
         <type>array</type>
         <el>

@@ -195,8 +195,33 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
         languageFr: _this.readFileAsString(_this.dirs.llDir+'fr.'+_this.params.slug+'.xlf')
       };
       _this.tabField = new Array();
-      _this._promptCustom();
+      _this._initAssets();
     });
+  },
+
+  _initAssets: function() {
+    var done = this.async();
+    var prompts = [
+    {
+      name: "includeCSS",
+      message: "Do you want to include a CSS file?",
+      type: 'confirm',
+      default: true
+    },
+    {
+      name: "includeJS",
+      message: "Do you want to include a JS file?",
+      type: 'confirm',
+      default: true
+    }
+    ];
+
+    this.prompt(prompts, function (props) {
+      this.includeCSS = props.includeCSS;
+      this.includeJS = props.includeJS;
+
+      this._promptCustom();
+    }.bind(this));
   },
 
   _promptCustom: function() {
@@ -327,10 +352,6 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     var index =cpt*10;
     var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
     var tab = '    ';
-    // if(loopName) {
-    //   var tab = '      ';
-    // }else {
-    // }
 
     this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = FLEXFORM_SECTION\n"+tab+index+" {\n"+tab+"  rootPath = section:"+field.name+"s/el\n\n"+tab+"  10 = COA\n"+tab+"  10 {\n"+tab+'    wrap = <div class="'+field.name+'">|</div>\n\n'+tab+"    ## // insert here\n"+tab+"  }\n\n"+tab+"}\n");
     this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+"s>\n"+tab+"        <section>1</section>\n"+tab+"        <type>array</type>\n"+tab+"        <el>\n"+tab+"          <"+field.name+">\n"+tab+"            <type>array</type>\n"+tab+"            <tx_templavoila>\n"+tab+"              <title>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</title>\n"+tab+"            </tx_templavoila>\n"+tab+"            <el>\n"+tab+"              <!-- insert here -->\n"+tab+"            </el>\n"+tab+"          </"+field.name+">\n"+tab+"        </el>\n"+tab+"      </"+field.name+"s>\n");
@@ -338,7 +359,38 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
 
+  _createAssetsInclusion: function() {
+    var index = 6;
+    var tab = '    ';
+    var script = '';
+
+    var includeAssetsComment = '';
+    if(!this.includeCSS && !this.includeJS){
+      includeAssetsComment = '#';
+    }
+    script += includeAssetsComment+index+" = COA\n"+tab+includeAssetsComment+index+" {\n";
+
+    var includeCSSComment = '';
+    if(!this.includeCSS) {
+      includeCSSComment = '#';
+    }
+    script += tab+includeCSSComment+"  "+"10 = INCLUDE_CSS\n"+tab+includeCSSComment+"  "+"10."+this.params.slugifiedContentName+" = EXT:"+this.currentDir+"/Resources/Public/css/"+this.params.slugifiedContentName+".css\n"
+
+    var includeJSComment = '';
+    if(!this.includeJS) {
+      includeJSComment = '#';
+    }
+    script += tab+includeJSComment+"  "+"20 = INCLUDE_JS_FOOTER\n"+tab+includeJSComment+"  "+"20."+this.params.slugifiedContentName+" = EXT:"+this.currentDir+"/Resources/Public/js/"+this.params.slugifiedContentName+".js\n"
+
+    script += tab+includeAssetsComment+"}\n\n"+tab+"## // insert here";
+
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", script);
+  },
+
   _endCustom: function() {
+    // handle assets inclusion
+    this._createAssetsInclusion()
+
     var loopName = false;
     var index = 0;
     for(var i=0; i<this.tabField.length; i++) {
@@ -391,6 +443,12 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     }
     if(this.files && this.files.languageFr) {
       this.write(this.dirs.llDir+"fr."+this.params.slug+".xlf", this.files.languageFr);
+    }
+    if(this.includeCSS) {
+      this.template(this.dirs.cssDir+'_custom.css', this.dirs.cssDir+this.params.slug+'.css');
+    }
+    if(this.includeJS) {
+      this.template(this.dirs.jsDir+'_custom.js', this.dirs.jsDir+this.params.slug+'.js');
     }
 
     // upload directory if needed
