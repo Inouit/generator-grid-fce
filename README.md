@@ -78,11 +78,11 @@ Follow instructions and build your own content element
 **Custom: blocks in columns**<br >![][9] | **Custom: slider with count**<br />![][10]
 
 ##Quick demo##
-Here's a quick demo of a slideshow custom element  
+Here's a quick demo of a slideshow custom element
 
 ![][12]
 
-and the results  
+and the results
 
 ```
 # file : Configuration/Typoscript/slideshow.ts
@@ -92,6 +92,19 @@ tt_content.gridelements_pi1.20.10.setup.slideshow {
   prepend = COA
   prepend {
     5 = < lib.stdheader
+
+    6 = COA
+    6{
+      10 = INCLUDE_CSS
+      10.slideshow = EXT:skinFlex/Resources/Public/css/slideshow.css
+
+      20 = INCLUDE_JS_FOOTER
+      20{
+        slick-slider = EXT:skinFlex/Resources/Public/js/slick.min.js
+        slideshow = EXT:skinFlex/Resources/Public/js/slideshow.js
+      }
+    }
+
     10 = TEXT
     10 {
       field = flexform_title
