@@ -1,10 +1,18 @@
-page.includeCSS.<%= params.slugifiedContentName %> = EXT:<%= currentDir %>/<%= dirs.cssDir %><%= params.slugifiedContentName %>.css
-page.includeJSFooter.slick-slider = EXT:<%= currentDir %>/<%= dirs.jsDir %>slick.min.js
-page.includeJSFooter.<%= params.slugifiedContentName %> = EXT:<%= currentDir %>/<%= dirs.jsDir %><%= params.slugifiedContentName %>.js
-
 tt_content.gridelements_pi1.20.10.setup.<%= params.slugifiedContentName %> {
   prepend = COA
   prepend {
+    1 = COA
+    1{
+      10 = INCLUDE_CSS
+      10.<%= params.slugifiedContentName %> = EXT:<%= currentDir %>/<%= dirs.cssDir %><%= params.slugifiedContentName %>.css
+
+      20 = INCLUDE_JS_FOOTER
+      20{
+        slick-slider = EXT:<%= currentDir %>/<%= dirs.jsDir %>slick.min.js
+        <%= params.slugifiedContentName %> = EXT:<%= currentDir %>/<%= dirs.jsDir %><%= params.slugifiedContentName %>.js
+      }
+    }
+
     5 = < lib.stdheader
 
     10 = FLEXFORM_SECTION

@@ -3,6 +3,9 @@ page.includeCSS.<%= params.slugifiedContentName %> = EXT:<%= currentDir %>/<%= d
 tt_content.gridelements_pi1.20.10.setup.<%= params.slugifiedContentName %> {
   prepend = COA
   prepend {
+    1 = INCLUDE_CSS
+    1.<%= params.slugifiedContentName %> = EXT:<%= currentDir %>/<%= dirs.cssDir %><%= params.slugifiedContentName %>.css
+
     5 = < lib.stdheader
 
     10 = IMAGE
