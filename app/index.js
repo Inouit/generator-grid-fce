@@ -236,6 +236,8 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
         { value:'textarea', name:'Textarea' },
         { value:'rte', name:'Textarea with RTE' },
         { value:'image', name:'Image' },
+        { value:'link', name:'Typolink' },
+        { value:'select', name:'Select' },
         { value:'loop', name:'Loop' },
         new yeoman.inquirer.Separator(),
         { value:'exit', name:'No thanks, that\'s enough.' },
@@ -265,12 +267,22 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
         message: 'Provide a short description!'
       }
     ];
+    if(p.customField == 'select') {
+      prompts.push(
+        {
+          name: 'labelValue',
+          message: "Define label/value (l:v;)",
+        });
+    }
 
     this.prompt(prompts, function (props) {
       var field = {
           type: p.customField,
           name: _.camelize(_.slugify(props.fieldName)),
           contentDescription: props.fieldDescription
+      }
+      if(p.customField == 'select') {
+        field['selectlabelValue'] = props.labelValue;
       }
       this.tabField.push(field);
       this._promptCustom();
@@ -348,6 +360,53 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
     this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
   },
 
+  _createLink: function(cpt, field, loopName) {
+    var index =cpt*10;
+    if(loopName) {
+      var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
+      var tab = '        ';
+      var tabFlex = '            ';
+    }else {
+      var dataPath = 'field = flexform_'+field.name;
+      var tab = tabFlex = '    ';
+    }
+
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = TEXT\n"+tab+index+" {\n"+tab+"  stdWrap.typolink {\n"+tab+"    parameter.data = section_item:bloc/el/link1\n"+tab+"  }\n"+tab+"}\n\n"+tab+"## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tabFlex+"        <TCEforms>\n"+tabFlex+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tabFlex+"          <config>\n"+tabFlex+"            <type>input</type>\n"+tabFlex+"            <size>15</size>\n"+tabFlex+"            <wizards type='array'>\n"+tabFlex+"              <_PADDING type='integer'>2</_PADDING>\n"+tabFlex+"              <link type='array'>\n"+tabFlex+"                <type>popup</type>\n"+tabFlex+"                <title>Link</title>\n"+tabFlex+"                <icon>link_popup.gif</icon>\n"+tabFlex+"                <script>browse_links.php?mode=wizard</script>\n"+tabFlex+"                <JSopenParams>height=300,width=500,status=0,menubar=0,scrollbars=1</JSopenParams>\n"+tabFlex+"              </link>\n"+tabFlex+"            </wizards>\n"+tabFlex+"          </config>\n"+tabFlex+"        </TCEforms>\n"+tabFlex+"      </"+field.name+">\n\n"+tabFlex+"      <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n\n'+tab+'  <!-- insert here -->');
+  },
+
+  _createSelect: function(cpt, field, loopName) {
+    var index =cpt*10;
+    if(loopName) {
+      var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
+      var tab = '        ';
+      var tabFlex = '            ';
+    }else {
+      var dataPath = 'field = flexform_'+field.name;
+      var tab = tabFlex = '    ';
+    }
+    var resultFlexform = "";
+    var resultLanguage = "";
+    var resultLanguageFr = "";
+    var couple = field.selectlabelValue.split(";");
+    for (var i=0; i<couple.length; i++) {
+      var label = couple[i].split(":")[0];
+      var value = couple[i].split(":")[1]
+      resultFlexform += tabFlex+"              <numIndex index='"+i+"' type='array'>\n"+tabFlex+"                <numIndex index='0'>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"."+label+"</numIndex>\n"+tabFlex+"                <numIndex index='1'>"+value+"</numIndex>\n"+tabFlex+"              </numIndex>\n";
+
+      resultLanguage += tab+'  <trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'.'+label+'" xml:space="preserve">\n'+tab+'    <source>'+label+'</source>\n'+tab+'  </trans-unit>\n';
+
+      resultLanguageFr += tab+'  <trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'.'+label+'" xml:space="preserve">\n'+tab+'    <source>'+label+'</source>\n'+tab+'    <target state="translated">'+label+'</target> \n'+tab+'  </trans-unit>\n';
+    }
+
+    this.files.typoscript = this.files.typoscript.replace("## // insert here", index+" = TEXT\n"+tab+index+" {\n"+tab+"  "+dataPath+"\n"+tab+"}\n\n"+tab+"## // insert here");
+    this.files.flexform = this.files.flexform.replace("<!-- insert here -->", "<"+field.name+">\n"+tabFlex+"        <TCEforms>\n"+tabFlex+"          <label>LLL:EXT:"+this.currentDir+"/"+this.dirs.llDir+this.params.slugifiedContentName+".xlf:flexform."+this.params.slugifiedContentName+"."+field.name+"</label>\n"+tabFlex+"          <config>\n"+tabFlex+"            <type>select</type>\n"+tabFlex+"            <items type='array'>\n"+resultFlexform+tabFlex+"            </items>\n"+tabFlex+"          </config>\n"+tabFlex+"        </TCEforms>\n"+tabFlex+"      </"+field.name+">\n\n"+tabFlex+"      <!-- insert here -->");
+    this.files.language = this.files.language.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve">\n'+tab+'    <source>'+field.contentDescription+'</source>\n'+tab+'  </trans-unit>\n'+resultLanguage+"\n"+tab+'  <!-- insert here -->');
+    this.files.languageFr = this.files.languageFr.replace("<!-- insert here -->", '<trans-unit id="flexform.'+this.params.slugifiedContentName+'.'+field.name+'" xml:space="preserve" approved="yes"> \n'+tab+'    <source>'+field.contentDescription+'</source> \n'+tab+'    <target state="translated">'+field.contentDescription+'</target> \n'+tab+'  </trans-unit>\n'+resultLanguageFr+"\n"+tab+'  <!-- insert here -->');
+  },
+
   _createLoop: function(cpt, field, loopName) {
     var index =cpt*10;
     var dataPath = 'data = section_item:'+loopName+'/el/'+field.name;
@@ -408,6 +467,12 @@ var GridelementsGenerator = yeoman.generators.Base.extend({
           break;
         case 'image':
           this._createImage(index, field, loopName);
+          break;
+        case 'link':
+          this._createLink(index, field, loopName);
+          break;
+        case 'select':
+          this._createSelect(index, field, loopName);
           break;
         case 'loop':
           this._createLoop(index, field, loopName);
