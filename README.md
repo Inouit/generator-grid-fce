@@ -74,8 +74,8 @@ Follow instructions and build your own content element
 ##FCE screenshots example##
 **Click to play**<br />![][5] | **Slideshow**<br />![][6]
 :---------------------------: | :--------------------------:
-**Image caption**<br >![][7] | **Custom: highlighted numbers**<br >![][8]
-**Custom: blocks in columns**<br >![][9] | **Custom: slider with count**<br />![][10]
+**Image caption**<br >![][7] | **Custom: Accordeon content**<br >![][8]
+**Custom: Doughnut chart**<br >![][9] | **Custom: Bar chart**<br />![][10]
 
 ##Quick demo##
 Here's a quick demo of a slideshow custom element
