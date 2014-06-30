@@ -78,59 +78,57 @@ Follow instructions and build your own content element
 **Custom: Doughnut chart**<br >![][9] | **Custom: Bar chart**<br />![][10]
 
 ##Quick demo##
-Here's a quick demo of a slideshow custom element
+Here's a quick demo of a Doughnut chart custom element
 
 ![][12]
 
-and the results
+the results in term of code
 
 ```
-# file : Configuration/Typoscript/slideshow.ts
-page.includeCSS.slideshow = EXT:skinFlex/Resources/Public/css/slideshow.css
-
-tt_content.gridelements_pi1.20.10.setup.slideshow {
+tt_content.gridelements_pi1.20.10.setup.chartdoughnut {
   prepend = COA
   prepend {
     5 = < lib.stdheader
-
     6 = COA
-    6{
+    6 {
       10 = INCLUDE_CSS
-      10.slideshow = EXT:skinFlex/Resources/Public/css/slideshow.css
-
+      10.chartdoughnut = EXT:skinFlex/Resources/Public/css/chartdoughnut.css
       20 = INCLUDE_JS_FOOTER
-      20{
-        slick-slider = EXT:skinFlex/Resources/Public/js/slick.min.js
-        slideshow = EXT:skinFlex/Resources/Public/js/slideshow.js
-      }
+      20.chartdoughnut = EXT:skinFlex/Resources/Public/js/chartdoughnut.js
     }
-
     10 = TEXT
     10 {
       field = flexform_title
     }
     20 = FLEXFORM_SECTION
     20 {
-      rootPath = section:slides/el
+      rootPath = section:numbers/el
       10 = COA
       10 {
-        wrap = <div class="slide">|</div>
-        10 = IMAGE
+        wrap = <div class="number">|</div>
+        10 = TEXT
         10 {
-          file.import.data = section_item:slide/el/image
-          file.import.wrap = uploads/skinFlex/slideshow/
+          data = section_item:number/el/label
         }
         20 = TEXT
         20 {
-          data = section_item:slide/el/caption
+          data = section_item:number/el/value
         }
+        30 = TEXT
+        30 {
+          data = section_item:number/el/color
+        }
+
         ## // insert here
       }
     }
   }
-  outerWrap = <div class="slideshow">|</div>
+  outerWrap = <div class="chartdoughnut">|</div>
 }
 ```
+
+and the result in frontend
+![][9]
 
 ## Thanks ##
 Thanks to [Plou][13] and [JuJulien][11] for their help.
@@ -152,3 +150,4 @@ GPL V3
   [11]: https://github.com/JuJulien
   [12]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/demo-custom.gif
   [13]: https://github.com/Plou
+  [14]: https://raw.githubusercontent.com/Inouit/generator-grid-fce/screenshots/screenshots/chartDoughnut.gif
