@@ -128,7 +128,7 @@ tt_content.gridelements_pi1.20.10.setup.chartdoughnut {
 ```
 
 and the result in frontend
-![][9]
+![][14]
 
 ## Thanks ##
 Thanks to [Plou][13] and [JuJulien][11] for their help.
