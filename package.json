@@ -29,7 +29,9 @@
     "underscore.string": "~2.3.3"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "recursive-readdir": "^1.1.1",
+    "fstream": "^0.1.28"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
